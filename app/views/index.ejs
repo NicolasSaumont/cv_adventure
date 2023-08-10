@@ -1,0 +1,30 @@
+<%- include('./partials/header.ejs') %>
+
+<div class="container">
+
+    <div class="sound-control">
+        <img class="sound-control_icon sound-control_icon--on" src="/img/soundOn.png" alt="icone to turn the sound on">
+        <img class="sound-control_icon sound-control_icon--off hidden" src="/img/soundOff.png" alt="icone to turn the sound off">
+    </div>
+    
+    <nav class="phone-navbar hidden">
+        <ul class="menu-items">
+            <li class="menu-item ">See 'Experiences'</li>
+            <li class="menu-item">See 'Diplomas'</li>
+            <li class="menu-item">See 'Skills'</li>
+            <li class="menu-item">See 'Portfolio'</li>
+            <li class="menu-item">See 'Hobbies'</li>
+            <li class="menu-item">See 'Contact'</li>
+        </ul>
+    </nav>
+    
+    <canvas></canvas>
+    
+    <div class="blackbox"></div>
+    
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/js/audio.js"></script>
+<script src="/js/canvas.js"></script>
+
+<%- include('./partials/footer.ejs') %>
