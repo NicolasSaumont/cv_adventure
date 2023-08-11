@@ -12,13 +12,7 @@ const gravity = 1.5;
 
 let phoneOut = false;
 
-let textHowToMoveDisappearedOnce = false;
-let textHowToJumpDisappearedOnce = false;
-let textHowToGoInsideDisappearedOnce = false;
-let textHowToTakePhoneDisappearedOnce = false;
-let textWhenToTakePhoneDisappearedOnce = false;
 // let textHowToGetSnackDisappearedOnce = false;
-let textHowToContactMeDisappearedOnce = false;
 // let quoteSnackAppeared = false;
 
 function createImage(imageSrc) {
@@ -222,7 +216,7 @@ class DialogBubble {
         
         // Gestion des apparitions et disparations des bulles 'tuto'
         if (this.name === 'move'){
-            if (textHowToMoveDisappearedOnce === true) {
+            if (sessionStorage.textHowToMoveDisappearedOnce === 'true') {
                 c.globalAlpha = 0; 
             };
         };
@@ -230,13 +224,13 @@ class DialogBubble {
         if (this.name === 'jump'){
             c.globalAlpha = 0;
             if (
-                scrollOffSet  + player.position.x >= 924 
-                && textHowToJumpDisappearedOnce === false
+                scrollOffSet + player.position.x >= 924 
+                && sessionStorage.textHowToJumpDisappearedOnce === undefined
             ){
                 c.globalAlpha = 1; 
             };
 
-            if (textHowToJumpDisappearedOnce === true) {
+            if (sessionStorage.textHowToJumpDisappearedOnce === 'true') {
                 c.globalAlpha = 0; 
             };   
         };
@@ -246,7 +240,7 @@ class DialogBubble {
             if (
                 scrollOffSet + player.position.x >= 1320 
                 && scrollOffSet + player.position.x <= 1420 
-                && textHowToGoInsideDisappearedOnce === false
+                && sessionStorage.textHowToGoInsideDisappearedOnce === undefined
             ){
                 c.globalAlpha = 1; 
             };
@@ -254,7 +248,7 @@ class DialogBubble {
             if (
                 scrollOffSet + player.position.x < 1320 
                 && scrollOffSet + player.position.x > 1420 
-                || textHowToGoInsideDisappearedOnce === true
+                || sessionStorage.textHowToGoInsideDisappearedOnce === 'true'
             ){
                 c.globalAlpha = 0; 
             };   
@@ -265,14 +259,14 @@ class DialogBubble {
             if (
                 scrollOffSet + player.position.x >= 1680 
                 && scrollOffSet + player.position.x <= 1750 
-                && textHowToTakePhoneDisappearedOnce === false
+                && sessionStorage.textHowToTakePhoneDisappearedOnce === undefined
             ){
                 c.globalAlpha = 1; 
             };
 
             if (scrollOffSet + player.position.x < 1680 
                 && scrollOffSet + player.position.x > 1750 
-                || textHowToTakePhoneDisappearedOnce === true
+                || sessionStorage.textHowToTakePhoneDisappearedOnce === 'true'
             ){
                 c.globalAlpha = 0; 
             };   
@@ -283,18 +277,19 @@ class DialogBubble {
             if (
                 scrollOffSet + player.position.x >= 2300 
                 && scrollOffSet + player.position.x <= 2600 
-                && textWhenToTakePhoneDisappearedOnce === false
+                && sessionStorage.textWhenToTakePhoneDisappearedOnce === undefined
             ){
                 c.globalAlpha = 1; 
             };
 
             if (scrollOffSet + player.position.x > 2600){
-                textWhenToTakePhoneDisappearedOnce = true;
+                sessionStorage.removeItem('textWhenToTakePhoneDisappearedOnce')
+                sessionStorage.setItem('textWhenToTakePhoneDisappearedOnce', true);
             };  
 
             if (scrollOffSet + player.position.x < 2300 
                 && scrollOffSet + player.position.x > 2600 
-                || textWhenToTakePhoneDisappearedOnce === true
+                || sessionStorage.textWhenToTakePhoneDisappearedOnce === 'true'
             ){
                 c.globalAlpha = 0; 
             };   
@@ -324,7 +319,7 @@ class DialogBubble {
             if (
                 scrollOffSet + player.position.x >= 4910 
                 && scrollOffSet + player.position.x <= 4970 
-                && textHowToContactMeDisappearedOnce === false
+                && sessionStorage.textHowToContactMeDisappearedOnce === undefined
             ){
                 c.globalAlpha = 1; 
             };
@@ -332,7 +327,7 @@ class DialogBubble {
             if (
                 scrollOffSet + player.position.x < 4910 
                 && scrollOffSet + player.position.x > 4970 
-                || textHowToContactMeDisappearedOnce === true
+                || sessionStorage.textHowToContactMeDisappearedOnce === 'true'
             ){
                 c.globalAlpha = 0; 
             };   
@@ -566,18 +561,20 @@ let stepsCount = 0;
 
 let lastKey = '';
 
-let menuIndex = 1;
+let spacePressed = false;
 
-let gameStarted = false;
+let menuIndex = 1;
 
 let runningSoundTurnedOn = false;
 
 let runningSoundAlreadyOn = false;
 
-function animate() {
+let musicReloaded = false;
+
+function animate(req, res) {
     requestAnimationFrame(animate);
 
-    if (!gameStarted) {
+    if (sessionStorage.gameStarted === undefined) {
         genericObjects.forEach(genericObject => {
             if (genericObject.name === 'background-sky' || genericObject.name === 'title' || genericObject.name === 'starting') {
                genericObject.draw(); 
@@ -773,39 +770,67 @@ function animate() {
         }) ;
     }
 
-          
 };
 
 document.querySelector(`.menu-item:nth-child(${menuIndex})`).classList.add('activated');
 
-audio.home.play();
+audio.home.play(); 
 
 document.querySelector('.blackbox').style.opacity="0";
 
 animate();
 
+
+
 addEventListener('keydown', ({ code }) => {
     switch (code) {
     case 'ArrowLeft':
+        if (
+            sessionStorage.gameStarted === 'true' 
+            && musicReloaded === false 
+            && sessionStorage.comeFrom === undefined
+        ) {
+            musicReloaded = true;
+            audio.home.play();
+        }
+        if (sessionStorage.comeFrom === 'library') {
+            sessionStorage.removeItem('comeFrom');
+            musicReloaded = true;
+        }
         runningSoundTurnedOn = true;
         keys.left.pressed = true;
         player.currentSprite = player.sprites.run.left;
         lastKey = 'ArrowLeft';
-        textHowToMoveDisappearedOnce = true;
+        sessionStorage.removeItem('textHowToMoveDisappearedOnce')
+        sessionStorage.setItem('textHowToMoveDisappearedOnce', true);
         if (phoneOut === true) {
             document.querySelector('.phone-navbar').classList.add('hidden');
             phoneOut = false;
-        }
+        };
 
         // textHowToGetSnackDisappearedOnce = false;
         // quoteSnackAppeared = false;
-        break;
+
+        break; 
     case 'ArrowRight':
+        if (
+            sessionStorage.gameStarted === 'true' 
+            && musicReloaded === false 
+            && sessionStorage.comeFrom === undefined
+        ) {
+            musicReloaded = true;
+            audio.home.play();
+        }
+        if (sessionStorage.comeFrom === 'library') {
+            sessionStorage.removeItem('comeFrom');
+            musicReloaded = true;
+        }
         runningSoundTurnedOn = true;
         keys.right.pressed = true;
         player.currentSprite = player.sprites.run.right;
         lastKey = 'ArrowRight';
-        textHowToMoveDisappearedOnce = true;
+        sessionStorage.removeItem('textHowToMoveDisappearedOnce')
+        sessionStorage.setItem('textHowToMoveDisappearedOnce', true);
         if (phoneOut === true) {
             document.querySelector('.phone-navbar').classList.add('hidden');
             phoneOut = false;
@@ -813,6 +838,7 @@ addEventListener('keydown', ({ code }) => {
         
         // textHowToGetSnackDisappearedOnce = false;
         // quoteSnackAppeared = false;
+
         break;
     case 'ArrowDown':
         if (phoneOut === true) {
@@ -834,11 +860,12 @@ addEventListener('keydown', ({ code }) => {
             // 1420 correspond au scrollOffSet de l'endroit où on veut désactiver l'event + la position max du player (300)
             if (scrollOffSet + player.position.x >= 1060 && scrollOffSet + player.position.x <= 1280) {
                 console.log('Vous pouvez me contacter');
-                textHowToContactMeDisappearedOnce = true;
+                sessionStorage.removeItem('textHowToContactMeDisappearedOnce')
+                sessionStorage.setItem('textHowToContactMeDisappearedOnce', true);
             } else if (scrollOffSet + player.position.x >= 1320 && scrollOffSet + player.position.x <= 1420) {
-                console.log('Vous pouvez entrer dans la Library');
                 document.querySelector('.blackbox').style.opacity="1";
-                textHowToGoInsideDisappearedOnce = true;
+                sessionStorage.removeItem('textHowToGoInsideDisappearedOnce')
+                sessionStorage.setItem('textHowToGoInsideDisappearedOnce', true);
                 setTimeout(() => {
                     location.href = location.pathname + 'library';
                 }, 100);
@@ -855,7 +882,8 @@ addEventListener('keydown', ({ code }) => {
                 console.log('Vous pouvez entrer dans la school');
             } else if (scrollOffSet + player.position.x >= 4910 && scrollOffSet + player.position.x <= 4970) {
                 console.log('Vous pouvez me contacter');
-                textHowToContactMeDisappearedOnce = true;
+                sessionStorage.removeItem('textHowToContactMeDisappearedOnce')
+                sessionStorage.setItem('textHowToContactMeDisappearedOnce', true);
             };
         } else if (phoneOut === true) {
             if (menuIndex > 1) {
@@ -870,29 +898,61 @@ addEventListener('keydown', ({ code }) => {
         };
         break;
     case 'Space':
-        audio.jump.play();
-        if (lastKey === 'ArrowLeft' && phoneOut === true) {
-            player.currentSprite = player.sprites.stand.left
-        } else if (lastKey === 'ArrowRight' && phoneOut === true) {
-            player.currentSprite = player.sprites.stand.right
-        };
-        if (player.velocity.y === 0) {
-            player.velocity.y -= 18;
-        };
-        textHowToJumpDisappearedOnce = true;
-        if (phoneOut === true) {
-            document.querySelector('.phone-navbar').classList.add('hidden');
-            phoneOut = false;
-        };
+        if (
+            sessionStorage.gameStarted === 'true' 
+            && musicReloaded === false 
+            && sessionStorage.comeFrom === undefined
+        ) {
+            musicReloaded = true;
+            audio.home.play();
+        }
+        if (sessionStorage.comeFrom === 'library') {
+            sessionStorage.removeItem('comeFrom');
+            musicReloaded = true;
+        }
+        if (spacePressed === false) {
+            if (lastKey === 'ArrowLeft' && phoneOut === true) {
+                player.currentSprite = player.sprites.stand.left
+            } else if (lastKey === 'ArrowRight' && phoneOut === true) {
+                player.currentSprite = player.sprites.stand.right
+            };
+            if (player.velocity.y === 0) {
+                spacePressed = true;
+                audio.jump.play();
+                player.velocity.y -= 18;
+            };
+            sessionStorage.removeItem('textHowToJumpDisappearedOnce')
+            sessionStorage.setItem('textHowToJumpDisappearedOnce', true);
+            if (phoneOut === true) {
+                document.querySelector('.phone-navbar').classList.add('hidden');
+                phoneOut = false;
+            };
+        }
         break;
     case 'Enter':
-        if (!gameStarted) {
+        if (sessionStorage.gameStarted === undefined) {
             audio.home.play();
-            gameStarted = true;
+            // gameStarted = true;
+            sessionStorage.setItem("gameStarted", true);
+            musicReloaded = true;
         } else {
+            if (
+            sessionStorage.gameStarted === 'true' 
+            && musicReloaded === false 
+            && sessionStorage.comeFrom === undefined
+        ) {
+            musicReloaded = true;
+            audio.home.play();
+        }
+        if (sessionStorage.comeFrom === 'library') {
+            sessionStorage.removeItem('comeFrom');
+            musicReloaded = true;
+        }
             if (phoneOut === false){
-                textHowToMoveDisappearedOnce = true;
-                textHowToTakePhoneDisappearedOnce = true;
+                sessionStorage.removeItem('textHowToMoveDisappearedOnce')
+                sessionStorage.setItem('textHowToMoveDisappearedOnce', true);
+                sessionStorage.removeItem('textHowToTakePhoneDisappearedOnce')
+                sessionStorage.setItem('textHowToTakePhoneDisappearedOnce', true);
                 phoneOut = true;
                 document.querySelector('.phone-navbar').classList.remove('hidden');
                 if (lastKey === 'ArrowLeft') {
@@ -902,7 +962,8 @@ addEventListener('keydown', ({ code }) => {
                 };
 
                 if (scrollOffSet + player.position.x >= 2300 && scrollOffSet + player.position.x <= 2600) {
-                    textWhenToTakePhoneDisappearedOnce = true;
+                    sessionStorage.removeItem('textWhenToTakePhoneDisappearedOnce')
+                    sessionStorage.setItem('textWhenToTakePhoneDisappearedOnce', true);
                 }; 
             } else {
                 document.querySelector(`.menu-item:nth-child(${menuIndex})`).classList.remove('activated');
@@ -1013,4 +1074,10 @@ addEventListener('keyup', ({ code }) => {
             };
         };
     };
+    spacePressed = false;
 });
+
+// document.querySelector('.sound-control').addEventListener('click', (event) => {
+//     audio.home.stop();
+//     audio.home.play();
+// });

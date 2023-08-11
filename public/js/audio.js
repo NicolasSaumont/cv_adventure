@@ -6,30 +6,35 @@ const audio = {
         src: './audio/home.mp3',
         html5: true,
         volume: 0.3,
-        loop: true
+        loop: true,
+        mute: false
     }),
     interior: new Howl({
         src: './audio/interior.mp3',
         html5: true,
         volume: 0.3,
-        loop: true
+        loop: true,
+        mute: false
     }),
     travelToOtherSites: new Howl({
         src: './audio/travelToOtherSites.mp3',
         html5: true,
         volume: 0.3,
-        loop: true
+        loop: true,
+        mute: false
     }),
     jump: new Howl({
         src: './audio/jump.mp3',
         html5: true,
         volume: 0.2,
+        mute: false
     }),
     run: new Howl({
         src: './audio/run.mp3',
         html5: true,
         volume: 1,
-        loop: true
+        loop: true,
+        mute: false
     })
 }
 
@@ -40,18 +45,17 @@ soundController.addEventListener('click', (event) => {
     document.querySelector('.sound-control_icon--off').classList.toggle('hidden');
     if ( soundOn ) {
         soundOn = false;
-        audio.home.volume(0);
-        audio.interior.volume(0);
-        audio.travelToOtherSites.volume(0);
-        // audio.run.volume(0);
-        // audio.jump.volume(0);
+        audio.home.mute(true);
+        audio.interior.mute(true);
+        audio.travelToOtherSites.mute(true);
+        audio.run.mute(true);
+        audio.jump.mute(true);
     } else {
         soundOn = true;
-        audio.home.volume(0.3);
-        audio.interior.volume(0.3);
-        audio.travelToOtherSites.volume(0.3);
-        // audio.run.volume(0.3);
-        // audio.jump.volume(0.3);
-    }
-    
+        audio.home.mute(false);
+        audio.interior.mute(false);
+        audio.travelToOtherSites.mute(false);
+        audio.run.mute(false);
+        audio.jump.mute(false);
+    }  
 });

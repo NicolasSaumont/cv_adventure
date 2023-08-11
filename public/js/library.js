@@ -7,9 +7,6 @@ canvas.height = 576;
 
 const gravity = 1.5;
 
-let alertBubbleDisappearedOnce = false;
-let alertProhibitedPhone = false;
-
 class Platform {
     constructor({ x, y, image }) {
         this.position = {
@@ -286,11 +283,17 @@ const dialogBubbles = [
     })
 ];
 
+let alertBubbleDisappearedOnce = false;
+
+let alertProhibitedPhone = false;
+
 let scrollOffSet = 0;
 
 let stepsCount = 0;
 
-let lastKey = ''
+let lastKey = '';
+
+let spacePressed = false;
 
 let runningSoundTurnedOn = false;
 
@@ -362,6 +365,8 @@ function animate() {
     // Exit
     if (player.position.x <= 160) {
         document.querySelector('.blackbox').style.opacity="1";
+        sessionStorage.removeItem('comeFrom');
+        sessionStorage.setItem('comeFrom', 'library');
         setTimeout(() => {
             location.href = '/';
         }, 100);
@@ -395,10 +400,13 @@ addEventListener('keydown', ({ code }) => {
     case 'ArrowUp':
         break;
     case 'Space':
-        audio.jump.play();
-        if (player.velocity.y === 0) {
-            player.velocity.y -= 18;
-        };
+        if (spacePressed === false) {
+            if (player.velocity.y === 0) {
+                spacePressed = true;
+                audio.jump.play();
+                player.velocity.y -= 18;
+            };
+        }
         break;
     case 'Enter':
         console.log('Interdiction de téléphoner ici');
@@ -428,4 +436,5 @@ addEventListener('keyup', ({ code }) => {
             };
         };
     };
+    spacePressed = false;
 });

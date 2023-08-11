@@ -1,13 +1,11 @@
 const { Router } = require('express');
 const router = Router();
 
+const mainController = require('./controllers/mainController');
 
-router.get('/', (req, res) => {
-    res.render(`index.ejs`);
-});
 
-router.get('/library', (req, res) => {
-    res.render(`library.ejs`);
-});
+router.get('/', mainController.homePage);
+
+router.get('/library', mainController.getToLibrary);
 
 module.exports = router;
