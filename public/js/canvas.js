@@ -605,6 +605,23 @@ function animate(req, res) {
 
         player.update();
 
+        switch (sessionStorage.comeFrom) {
+            case 'library':
+                scrollOffSet = 1071;
+                player.position.x = 300;
+                player.position.y = 481,4;
+                genericObjects[0].position.x = -5,35;
+                genericObjects[1].position.x = -107;
+                genericObjects[2].position.x = -214;
+                genericObjects[3].position.x = -1070;
+                genericObjects[4].position.x = -1070 + 100;
+                platforms[0].position.x = -1070;
+                obstacles[0].position.x = -1070 + 985;
+                break;
+            default:
+                break;
+        }
+
         if (runningSoundTurnedOn && !runningSoundAlreadyOn) {
             audio.run.play();
             runningSoundAlreadyOn = true;
@@ -932,7 +949,7 @@ addEventListener('keydown', ({ code }) => {
     case 'Enter':
         if (sessionStorage.gameStarted === undefined) {
             audio.home.play();
-            // gameStarted = true;
+            sessionStorage.setItem('soundOn', true);
             sessionStorage.setItem("gameStarted", true);
             musicReloaded = true;
         } else {

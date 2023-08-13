@@ -1,5 +1,5 @@
 // Cette variable va être passée en session
-let soundOn = true;
+// let soundOn = true;
 
 const audio = {
     home: new Howl({
@@ -40,22 +40,37 @@ const audio = {
 
 const soundController = document.querySelector('.sound-control');
 
+function turnSoundOn() {
+    document.querySelector('.sound-control_icon--on').classList.remove('hidden');
+    document.querySelector('.sound-control_icon--off').classList.add('hidden');
+    audio.home.mute(false);
+    audio.interior.mute(false);
+    audio.travelToOtherSites.mute(false);
+    audio.run.mute(false);
+    audio.jump.mute(false);
+    sessionStorage.removeItem('soundOn');
+    sessionStorage.setItem('soundOn', true);
+};
+
+function turnSoundOff() {
+    document.querySelector('.sound-control_icon--on').classList.add('hidden');
+    document.querySelector('.sound-control_icon--off').classList.remove('hidden');
+    audio.home.mute(true);
+    audio.interior.mute(true);
+    audio.travelToOtherSites.mute(true);
+    audio.run.mute(true);
+    audio.jump.mute(true);
+    sessionStorage.removeItem('soundOn');
+    sessionStorage.setItem('soundOn', false);
+};
+
 soundController.addEventListener('click', (event) => {
-    document.querySelector('.sound-control_icon--on').classList.toggle('hidden');
-    document.querySelector('.sound-control_icon--off').classList.toggle('hidden');
-    if ( soundOn ) {
-        soundOn = false;
-        audio.home.mute(true);
-        audio.interior.mute(true);
-        audio.travelToOtherSites.mute(true);
-        audio.run.mute(true);
-        audio.jump.mute(true);
-    } else {
-        soundOn = true;
-        audio.home.mute(false);
-        audio.interior.mute(false);
-        audio.travelToOtherSites.mute(false);
-        audio.run.mute(false);
-        audio.jump.mute(false);
+
+    console.log(sessionStorage.soundOn);
+    
+    if (sessionStorage.soundOn === 'true') {
+        turnSoundOff();
+    } else if (sessionStorage.soundOn === 'false') {
+        turnSoundOn();
     }  
 });
