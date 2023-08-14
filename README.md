@@ -1,4 +1,4 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+
 <a name="readme-top"></a>
 <!--
 *** Thanks for checking out the projetc 'Nicolas Saumont's CV Adventure. If you have a suggestion
@@ -15,8 +15,7 @@
 *** I'm using markdown "reference style" links for readability.
 *** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
 *** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+*** for contributors-url, forks-url, etc. 
 -->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
@@ -85,7 +84,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://www.cv-adventure.nicolassaumont.com)
 
-Découvrez de façon ludique mon parcours professionnel grâce à un site CV novateur : une expérience de jeu d'arcade rétro qui vous permet de naviguer à travers les différentes étapes de ma carrière tout en vous amusant. Plongez dans l'expérience immersive de la découverte d'un web développeur en quête d'opportunités, tout en explorant mon parcours et mes compétences.
+Discover my career path in a playful way thanks to an innovative CV site: a retro arcade game experience that lets you navigate through the different stages of my career while having fun. Immerse yourself in this unique experience of discovering a web developer in search of opportunities, while exploring my background and skills.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
