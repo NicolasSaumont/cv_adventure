@@ -42,6 +42,33 @@ class GenericObject {
     };
 };
 
+class FrontObject {
+    constructor({ x, y, image, name }) {
+        this.position = {
+            x,
+            y
+        };
+        this.image = image;
+        this.name = name;
+        this.width = image.width;
+        this.height = image.height;
+    };
+
+    draw() {
+
+        c.globalAlpha = 0; 
+
+            if (bookOpened === true) {
+                c.globalAlpha = 1; 
+            };
+
+        c.drawImage(this.image, this.position.x, this.position.y);    
+
+        c.globalAlpha = 1; 
+
+    };
+};
+
 class Player {
 
     constructor() {
@@ -192,6 +219,16 @@ class DialogBubble {
             };
         };
 
+        if (this.name === 'interact'){
+            if (
+                player.position.x > 370 
+                && player.position.x < 470 
+                && textHowToInteractDisappearedOnce === false
+                ) {
+                c.globalAlpha = 1; 
+            };
+        };
+
         c.drawImage(this.image, this.position.x, this.position.y);
         
         const maxWidth = this.width;
@@ -258,6 +295,15 @@ const genericObjects = [
     })
 ];
 
+const frontObjects = [
+    new FrontObject({
+        x: 0,
+        y: 0,
+        image: createImage('/img/openBook.png'),
+        name: 'openBook'
+    })
+];
+
 const keys = {
     right: {
         pressed: false,
@@ -280,10 +326,19 @@ const dialogBubbles = [
         image: createImage('/img/dialogBubble.png'), 
         name: `prohibitedPhone`,
         text: `Can't take my phone here...`,
+    }),
+    new DialogBubble({
+        image: createImage('/img/dialogBubble.png'), 
+        name: `interact`,
+        text: `Press 'up' to interact`,
     })
 ];
 
 let alertBubbleDisappearedOnce = false;
+
+let textHowToInteractDisappearedOnce = false;
+
+let bookOpened = false;
 
 let alertProhibitedPhone = false;
 
@@ -299,8 +354,9 @@ let runningSoundTurnedOn = false;
 
 let runningSoundAlreadyOn = false;
 
-// A gérer avec ArrowRight et ArrowLeft pour le rechargement de la page
 let musicReloaded = false;
+
+let indexBookPage = 0;
 
 function animate() {
 
@@ -323,6 +379,10 @@ function animate() {
     });
     
     player.update();
+
+    frontObjects.forEach(frontObject => {
+        frontObject.draw() 
+    });
 
     if (runningSoundTurnedOn && !runningSoundAlreadyOn) {
         audio.run.play();
@@ -374,6 +434,8 @@ function animate() {
             location.href = '/';
         }, 100);
     }
+
+    console.log(indexBookPage);
 };
 
 audio.interior.play();
@@ -385,22 +447,72 @@ animate();
 addEventListener('keydown', ({ code }) => {
     switch (code) {
     case 'ArrowLeft':
+        if (
+            sessionStorage.gameStarted === 'true' 
+            && musicReloaded === false 
+            && sessionStorage.comeFrom === undefined
+        ) {
+            musicReloaded = true;
+            audio.interior.play();
+        };
+        if (sessionStorage.comeFrom === 'outside') {
+            sessionStorage.removeItem('comeFrom');
+            musicReloaded = true;
+        };
+        if (bookOpened === false){
         runningSoundTurnedOn = true;
         keys.left.pressed = true;
         player.currentSprite = player.sprites.run.left;
         lastKey = 'ArrowLeft';
         alertProhibitedPhone = false;
+        };
+        if (bookOpened === true && indexBookPage > 1){
+            audio.flipPages.play();
+            document.querySelector(`.resume-content--page_${indexBookPage}`).classList.add('hidden');
+            indexBookPage--;
+            document.querySelector(`.resume-content--page_${indexBookPage}`).classList.remove('hidden');
+        };
         break;
     case 'ArrowRight':
+        if (
+            sessionStorage.gameStarted === 'true' 
+            && musicReloaded === false 
+            && sessionStorage.comeFrom === undefined
+        ) {
+            musicReloaded = true;
+            audio.interior.play();
+        };
+        if (sessionStorage.comeFrom === 'outside') {
+            sessionStorage.removeItem('comeFrom');
+            musicReloaded = true;
+        };
+        if (bookOpened === false){
         runningSoundTurnedOn = true;
         keys.right.pressed = true;
         player.currentSprite = player.sprites.run.right;
         lastKey = 'ArrowRight';
         alertProhibitedPhone = false;
+        };
+        if (bookOpened === true && indexBookPage < 8){
+            audio.flipPages.play();
+            document.querySelector(`.resume-content--page_${indexBookPage}`).classList.add('hidden');
+            indexBookPage++;
+            document.querySelector(`.resume-content--page_${indexBookPage}`).classList.remove('hidden');
+        };
         break;
     case 'ArrowDown':
         break;
     case 'ArrowUp':
+        if (
+            player.position.x > 370 
+            && player.position.x < 470 
+            && bookOpened === false
+        ) {
+            bookOpened = true;
+            textHowToInteractDisappearedOnce = true
+            indexBookPage = 1;
+            document.querySelector(`.resume-content--page_${indexBookPage}`).classList.remove('hidden');
+        };
         break;
     case 'Space':
         if (spacePressed === false) {
@@ -414,6 +526,10 @@ addEventListener('keydown', ({ code }) => {
     case 'Enter':
         console.log('Interdiction de téléphoner ici');
         alertProhibitedPhone = true;
+        break;
+    case 'Escape':
+        bookOpened = false;
+        document.querySelector(`.resume-content--page_${indexBookPage}`).classList.add('hidden');
         break;
     };
 });
@@ -440,4 +556,9 @@ addEventListener('keyup', ({ code }) => {
         };
     };
     spacePressed = false;
+});
+
+document.querySelector('.close-button').addEventListener('click', (event) => {
+    bookOpened = false;
+    document.querySelector(`.resume-content--page_${indexBookPage}`).classList.add('hidden');
 });

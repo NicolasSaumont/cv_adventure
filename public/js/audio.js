@@ -32,6 +32,20 @@ const audio = {
         volume: 1,
         loop: true,
         mute: false
+    }),
+    flipPages: new Howl({
+        src: './audio/flipPages.mp3',
+        html5: true,
+        volume: 1,
+        loop: false,
+        mute: false
+    }),
+    closeBook: new Howl({
+        src: './audio/closeBook.mp3',
+        html5: true,
+        volume: 1,
+        loop: false,
+        mute: false
     })
 }
 
@@ -45,6 +59,8 @@ function turnSoundOn() {
     audio.travelToOtherSites.mute(false);
     audio.run.mute(false);
     audio.jump.mute(false);
+    audio.flipPages.mute(false);
+    audio.closeBook.mute(false);
     sessionStorage.removeItem('soundOn');
     sessionStorage.setItem('soundOn', true);
 };
@@ -57,6 +73,8 @@ function turnSoundOff() {
     audio.travelToOtherSites.mute(true);
     audio.run.mute(true);
     audio.jump.mute(true);
+    audio.flipPages.mute(true);
+    audio.closeBook.mute(true);
     sessionStorage.removeItem('soundOn');
     sessionStorage.setItem('soundOn', false);
 };

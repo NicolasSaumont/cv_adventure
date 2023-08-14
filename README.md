@@ -146,6 +146,13 @@ _For more examples, please refer to the [Documentation](https://example.com)_
   - [x] Harbour
   - [ ] Airport
   - [ ] Forest
+- [ ] Resume Content
+  - [ ] Visualize Experiences
+  - [ ] Visualize Diplomas
+  - [ ] Visualize Skills
+  - [ ] Visualize Portfolio
+  - [ ] Visualize Hobbies
+  - [ ] Visualize Contact
 - [x] Transitions
 - [ ] Sprites Creation
   - [x] Standing sprites

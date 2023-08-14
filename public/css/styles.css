@@ -13,6 +13,7 @@ body {
 
 ul { 
     list-style: none;
+    padding: 0;
 }
 
 .container {
@@ -20,6 +21,20 @@ ul {
     height: 576px;
     position: relative;
     display: flex;
+}
+
+.blackbox {
+    position: absolute;
+    width: 1024px;
+    height: 576px;
+    background-color: black;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.1s;
+}
+
+.hidden {
+    display: none;
 }
 
 .sound-control {
@@ -48,16 +63,53 @@ ul {
     color: #70c572;
 }
 
-.blackbox {
+.close-button {
     position: absolute;
-    width: 1024px;
-    height: 576px;
-    background-color: black;
-    pointer-events: none;
-    opacity: 1;
-    transition: opacity 0.1s;
+    width: 30px;
+    height: 30px;
+    top: -40px;
+    right: 10px;
+    cursor: pointer;
 }
 
-.hidden {
+.resume-content {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 49%;
+    transform: translate(-50%, -49%);
+    font-family: 'Indie Flower', cursive;
+    width: 550px;
+}
+
+.resume-content.hidden {
     display: none;
+}
+
+.resume-content_general {
+    width: 45%;
+    align-self: center;
+    text-align: end;
+}
+
+.resume-content_general .title{
+    font-size: 2rem;
+}
+
+.separator {
+    width: 10%;
+}
+
+.resume-content_details {
+    width: 45%;
+    font-size: 1.2rem;
+}
+
+.resume-content_details--even {
+    text-align: left;
+}
+
+.resume-content_details--odd {
+    align-self: center;
+    text-align: end;
 }

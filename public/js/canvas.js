@@ -881,6 +881,8 @@ addEventListener('keydown', ({ code }) => {
                 document.querySelector('.blackbox').style.opacity="1";
                 sessionStorage.removeItem('textHowToGoInsideDisappearedOnce')
                 sessionStorage.setItem('textHowToGoInsideDisappearedOnce', true);
+                sessionStorage.removeItem('comeFrom');
+        sessionStorage.setItem('comeFrom', 'outside');
                 setTimeout(() => {
                     location.href = location.pathname + 'library';
                 }, 100);
