@@ -158,6 +158,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
   - [x] Controls
 - [ ] Cinematics
 - [ ] Snacks
+- [ ] Responsive
 - [ ] Fine tuning
 - [ ] Refactorisation
   
