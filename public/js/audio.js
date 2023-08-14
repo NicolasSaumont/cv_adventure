@@ -50,7 +50,7 @@ const audio = {
     alert: new Howl({
         src: './audio/alert.mp3',
         html5: true,
-        volume: 1,
+        volume: 0.5,
         loop: false,
         mute: false
     })

@@ -58,7 +58,7 @@ class FrontObject {
 
         c.globalAlpha = 0; 
 
-            if (bookOpened === true) {
+            if (bookOpen === true) {
                 c.globalAlpha = 1; 
             };
 
@@ -164,16 +164,16 @@ class AlertBubble {
 
         c.globalAlpha = 0;
         // Gestion des apparitions et disparitions des bulles 'alert'
-        if (alertBubbleDisappearedOnce === true) {
+        if (sessionStorage.alertBubbleDisappearedOnce === 'true') {
             c.globalAlpha = 0; 
         };
 
-        if (alertOn && !alertBubbleDisappearedOnce) {
+        if (alertOn && sessionStorage.alertBubbleDisappearedOnce === undefined) {
             c.globalAlpha = 1;
         };
 
         if (player.position.x > 370) {
-            alertBubbleDisappearedOnce  = true;
+            sessionStorage.setItem('alertBubbleDisappearedOnce', true)
             alertOn = false;
         };
 
@@ -229,7 +229,7 @@ class DialogBubble {
             if (
                 player.position.x > 370 
                 && player.position.x < 470 
-                && textHowToInteractDisappearedOnce === false
+                && sessionStorage.textHowToInteractDisappearedOnce === undefined
                 ) {
                 c.globalAlpha = 1; 
             };
@@ -340,20 +340,11 @@ const dialogBubbles = [
     })
 ];
 
-let alertBubbleDisappearedOnce = false;
-
-let textHowToInteractDisappearedOnce = false;
-
-let bookOpened = false;
+let bookOpen = false;
 
 let alertProhibitedPhone = false;
 
 let alertOn = false;
-let alertSound = false;
-
-let scrollOffSet = 0;
-
-let stepsCount = 0;
 
 let lastKey = '';
 
@@ -443,8 +434,6 @@ function animate() {
             location.href = '/';
         }, 100);
     }
-
-    console.log(indexBookPage);
 };
 
 audio.interior.play();
@@ -468,14 +457,14 @@ addEventListener('keydown', ({ code }) => {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
         };
-        if (bookOpened === false){
+        if (bookOpen === false){
         runningSoundTurnedOn = true;
         keys.left.pressed = true;
         player.currentSprite = player.sprites.run.left;
         lastKey = 'ArrowLeft';
         alertProhibitedPhone = false;
         };
-        if (bookOpened === true && indexBookPage > 1){
+        if (bookOpen === true && indexBookPage > 1){
             audio.flipPages.play();
             document.querySelector(`.resume-content--page_${indexBookPage}`).classList.add('hidden');
             indexBookPage--;
@@ -495,9 +484,9 @@ addEventListener('keydown', ({ code }) => {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
         };
-        if (bookOpened === false){
-            if (!alertSound){
-                alertSound = true;
+        if (bookOpen === false){
+            if (sessionStorage.alertSound === undefined){
+                sessionStorage.setItem('alertSound', true);
                 audio.alert.play();
             }
             alertOn = true;
@@ -507,7 +496,7 @@ addEventListener('keydown', ({ code }) => {
             lastKey = 'ArrowRight';
             alertProhibitedPhone = false;
         };
-        if (bookOpened === true && indexBookPage < 8){
+        if (bookOpen === true && indexBookPage < 8){
             audio.flipPages.play();
             document.querySelector(`.resume-content--page_${indexBookPage}`).classList.add('hidden');
             indexBookPage++;
@@ -520,10 +509,10 @@ addEventListener('keydown', ({ code }) => {
         if (
             player.position.x > 370 
             && player.position.x < 470 
-            && bookOpened === false
+            && bookOpen === false
         ) {
-            bookOpened = true;
-            textHowToInteractDisappearedOnce = true
+            bookOpen = true;
+            sessionStorage.setItem('textHowToInteractDisappearedOnce', true);
             indexBookPage = 1;
             document.querySelector(`.resume-content--page_${indexBookPage}`).classList.remove('hidden');
         };
@@ -538,11 +527,10 @@ addEventListener('keydown', ({ code }) => {
         }
         break;
     case 'Enter':
-        console.log('Interdiction de téléphoner ici');
         alertProhibitedPhone = true;
         break;
     case 'Escape':
-        bookOpened = false;
+        bookOpen = false;
         document.querySelector(`.resume-content--page_${indexBookPage}`).classList.add('hidden');
         break;
     };
@@ -573,6 +561,6 @@ addEventListener('keyup', ({ code }) => {
 });
 
 document.querySelector('.close-button').addEventListener('click', (event) => {
-    bookOpened = false;
+    bookOpen = false;
     document.querySelector(`.resume-content--page_${indexBookPage}`).classList.add('hidden');
 });
