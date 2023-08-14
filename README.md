@@ -147,7 +147,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
   - [ ] Airport
   - [ ] Forest
 - [ ] Resume Content
-  - [ ] Visualize Experiences
+  - [x] Visualize Experiences
   - [ ] Visualize Diplomas
   - [ ] Visualize Skills
   - [ ] Visualize Portfolio

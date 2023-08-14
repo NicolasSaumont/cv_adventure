@@ -46,6 +46,13 @@ const audio = {
         volume: 1,
         loop: false,
         mute: false
+    }),
+    alert: new Howl({
+        src: './audio/alert.mp3',
+        html5: true,
+        volume: 1,
+        loop: false,
+        mute: false
     })
 }
 
@@ -61,6 +68,7 @@ function turnSoundOn() {
     audio.jump.mute(false);
     audio.flipPages.mute(false);
     audio.closeBook.mute(false);
+    audio.alert.mute(false);
     sessionStorage.removeItem('soundOn');
     sessionStorage.setItem('soundOn', true);
 };
@@ -75,6 +83,7 @@ function turnSoundOff() {
     audio.jump.mute(true);
     audio.flipPages.mute(true);
     audio.closeBook.mute(true);
+    audio.alert.mute(true);
     sessionStorage.removeItem('soundOn');
     sessionStorage.setItem('soundOn', false);
 };

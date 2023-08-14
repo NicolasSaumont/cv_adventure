@@ -161,15 +161,21 @@ class AlertBubble {
     };
 
     draw() {
-        
-        // Gestion des apparitions et disparations des bulles 'alert'
+
+        c.globalAlpha = 0;
+        // Gestion des apparitions et disparitions des bulles 'alert'
         if (alertBubbleDisappearedOnce === true) {
             c.globalAlpha = 0; 
         };
 
+        if (alertOn && !alertBubbleDisappearedOnce) {
+            c.globalAlpha = 1;
+        };
+
         if (player.position.x > 370) {
             alertBubbleDisappearedOnce  = true;
-        }
+            alertOn = false;
+        };
 
         c.drawImage(this.image, this.position.x, this.position.y);
 
@@ -342,6 +348,9 @@ let bookOpened = false;
 
 let alertProhibitedPhone = false;
 
+let alertOn = false;
+let alertSound = false;
+
 let scrollOffSet = 0;
 
 let stepsCount = 0;
@@ -487,11 +496,16 @@ addEventListener('keydown', ({ code }) => {
             musicReloaded = true;
         };
         if (bookOpened === false){
-        runningSoundTurnedOn = true;
-        keys.right.pressed = true;
-        player.currentSprite = player.sprites.run.right;
-        lastKey = 'ArrowRight';
-        alertProhibitedPhone = false;
+            if (!alertSound){
+                alertSound = true;
+                audio.alert.play();
+            }
+            alertOn = true;
+            runningSoundTurnedOn = true;
+            keys.right.pressed = true;
+            player.currentSprite = player.sprites.run.right;
+            lastKey = 'ArrowRight';
+            alertProhibitedPhone = false;
         };
         if (bookOpened === true && indexBookPage < 8){
             audio.flipPages.play();
