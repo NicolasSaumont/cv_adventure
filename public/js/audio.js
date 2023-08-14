@@ -1,6 +1,3 @@
-// Cette variable va être passée en session
-// let soundOn = true;
-
 const audio = {
     home: new Howl({
         src: './audio/home.mp3',
@@ -64,10 +61,7 @@ function turnSoundOff() {
     sessionStorage.setItem('soundOn', false);
 };
 
-soundController.addEventListener('click', (event) => {
-
-    console.log(sessionStorage.soundOn);
-    
+soundController.addEventListener('click', (event) => {    
     if (sessionStorage.soundOn === 'true') {
         turnSoundOff();
     } else if (sessionStorage.soundOn === 'false') {

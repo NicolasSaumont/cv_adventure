@@ -797,8 +797,6 @@ document.querySelector('.blackbox').style.opacity="0";
 
 animate();
 
-
-
 addEventListener('keydown', ({ code }) => {
     switch (code) {
     case 'ArrowLeft':
@@ -950,6 +948,7 @@ addEventListener('keydown', ({ code }) => {
         if (sessionStorage.gameStarted === undefined) {
             audio.home.play();
             sessionStorage.setItem('soundOn', true);
+            document.querySelector('.sound-control_icon--on').classList.remove('hidden');
             sessionStorage.setItem("gameStarted", true);
             musicReloaded = true;
         } else {

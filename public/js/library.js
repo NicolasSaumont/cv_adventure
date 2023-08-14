@@ -299,6 +299,9 @@ let runningSoundTurnedOn = false;
 
 let runningSoundAlreadyOn = false;
 
+// A gérer avec ArrowRight et ArrowLeft pour le rechargement de la page
+let musicReloaded = false;
+
 function animate() {
 
     requestAnimationFrame(animate);
