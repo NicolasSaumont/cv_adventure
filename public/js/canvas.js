@@ -82,6 +82,10 @@ class Player {
             watchPhone: {
                 right: createImage('/img/spritesWatchPhoneRight.png'),
                 left: createImage('/img/spritesWatchPhoneLeft.png'),
+            }, 
+            teleport: {
+                right: createImage('img/spritesTeleportingRight.png'),
+                left: createImage('img/spritesTeleportingLeft.png'),
             }
         };
         this.currentSprite = this.sprites.stand.right;
@@ -882,7 +886,7 @@ addEventListener('keydown', ({ code }) => {
                 sessionStorage.removeItem('textHowToGoInsideDisappearedOnce')
                 sessionStorage.setItem('textHowToGoInsideDisappearedOnce', true);
                 sessionStorage.removeItem('comeFrom');
-        sessionStorage.setItem('comeFrom', 'outside');
+                sessionStorage.setItem('comeFrom', 'outside');
                 setTimeout(() => {
                     location.href = location.pathname + 'library';
                 }, 100);
@@ -984,87 +988,100 @@ addEventListener('keydown', ({ code }) => {
                     sessionStorage.setItem('textWhenToTakePhoneDisappearedOnce', true);
                 }; 
             } else {
-                document.querySelector(`.menu-item:nth-child(${menuIndex})`).classList.remove('activated');
-                switch (menuIndex) {
-                    case 1:
-                        scrollOffSet = 1071;
-                        player.position.x = 300;
-                        player.position.y = 481,4;
-                        genericObjects[0].position.x = -5,35;
-                        genericObjects[1].position.x = -107;
-                        genericObjects[2].position.x = -214;
-                        genericObjects[3].position.x = -1070;
-                        genericObjects[4].position.x = -1070 + 100;
-                        platforms[0].position.x = -1070;
-                        obstacles[0].position.x = -1070 + 985;
-                        break;
-                    case 2:
-                        scrollOffSet = 1701;
-                        player.position.x = 300;
-                        player.position.y = 481,4;
-                        genericObjects[0].position.x = -8,5;
-                        genericObjects[1].position.x = -170;
-                        genericObjects[2].position.x = -340;
-                        genericObjects[3].position.x = -1701;
-                        genericObjects[4].position.x = -1701 + 100;
-                        platforms[0].position.x = -1701;
-                        obstacles[0].position.x = -1701 + 985;
-                        break;
-                    case 3:
-                        scrollOffSet = 4164;
-                        player.position.x = 300;
-                        player.position.y = 481,4;
-                        genericObjects[0].position.x = -20,8;
-                        genericObjects[1].position.x = -416;
-                        genericObjects[2].position.x = -832;
-                        genericObjects[3].position.x = -4164;
-                        genericObjects[4].position.x = -4164 + 100;
-                        platforms[0].position.x = -4164;
-                        obstacles[0].position.x = -4164 + 985;
-                        break;
-                    case 4:
-                        scrollOffSet = 4272;
-                        player.position.x = 820;
-                        player.position.y = 481,4;
-                        genericObjects[0].position.x = -21,36;
-                        genericObjects[1].position.x = -427,2;
-                        genericObjects[2].position.x = -854,4;
-                        genericObjects[3].position.x = -4272;
-                        genericObjects[4].position.x = -4272 + 100;
-                        platforms[0].position.x = -4272;
-                        obstacles[0].position.x = -4272 + 985;
-                        break;
-                    case 5:
-                        scrollOffSet = 3183;
-                        player.position.x = 300;
-                        player.position.y = 481,4;
-                        genericObjects[0].position.x = -15,9;
-                        genericObjects[1].position.x = -318;
-                        genericObjects[2].position.x = -636;
-                        genericObjects[3].position.x = -3183;
-                        genericObjects[4].position.x = -3183 + 100;
-                        platforms[0].position.x = -3183;
-                        obstacles[0].position.x = -3183 + 985;
-                        break;
-                    case 6:
-                        scrollOffSet = 4272;
-                        player.position.x = 670;
-                        player.position.y = 481,4;
-                        genericObjects[0].position.x = -21,36;
-                        genericObjects[1].position.x = -427,2;
-                        genericObjects[2].position.x = -854,4;
-                        genericObjects[3].position.x = -4272;
-                        genericObjects[4].position.x = -4272 + 100;
-                        platforms[0].position.x = -4272;
-                        obstacles[0].position.x = -4272 + 985;
-                        break;
-                    default:
-                        break;
-                }
-            phoneOut = false;
-            document.querySelector('.phone-navbar').classList.add('hidden');
-            menuIndex = 1;
-            document.querySelector(`.menu-item:nth-child(${menuIndex})`).classList.add('activated');
+                if (player.currentSprite === player.sprites.watchPhone.left) {
+                    player.currentSprite = player.sprites.teleport.left;
+                } else {
+                    player.currentSprite = player.sprites.teleport.right;
+                };
+                setTimeout(() => {
+                    document.querySelector('.blackbox').style.opacity="1";
+                }, 800);
+                
+                setTimeout(() => {
+                    document.querySelector(`.menu-item:nth-child(${menuIndex})`).classList.remove('activated');
+                    switch (menuIndex) {
+                        case 1:
+                            scrollOffSet = 1071;
+                            player.position.x = 300;
+                            player.position.y = 481,4;
+                            genericObjects[0].position.x = -5,35;
+                            genericObjects[1].position.x = -107;
+                            genericObjects[2].position.x = -214;
+                            genericObjects[3].position.x = -1070;
+                            genericObjects[4].position.x = -1070 + 100;
+                            platforms[0].position.x = -1070;
+                            obstacles[0].position.x = -1070 + 985;
+                            break;
+                        case 2:
+                            scrollOffSet = 1701;
+                            player.position.x = 300;
+                            player.position.y = 481,4;
+                            genericObjects[0].position.x = -8,5;
+                            genericObjects[1].position.x = -170;
+                            genericObjects[2].position.x = -340;
+                            genericObjects[3].position.x = -1701;
+                            genericObjects[4].position.x = -1701 + 100;
+                            platforms[0].position.x = -1701;
+                            obstacles[0].position.x = -1701 + 985;
+                            break;
+                        case 3:
+                            scrollOffSet = 4164;
+                            player.position.x = 300;
+                            player.position.y = 481,4;
+                            genericObjects[0].position.x = -20,8;
+                            genericObjects[1].position.x = -416;
+                            genericObjects[2].position.x = -832;
+                            genericObjects[3].position.x = -4164;
+                            genericObjects[4].position.x = -4164 + 100;
+                            platforms[0].position.x = -4164;
+                            obstacles[0].position.x = -4164 + 985;
+                            break;
+                        case 4:
+                            scrollOffSet = 4272;
+                            player.position.x = 820;
+                            player.position.y = 481,4;
+                            genericObjects[0].position.x = -21,36;
+                            genericObjects[1].position.x = -427,2;
+                            genericObjects[2].position.x = -854,4;
+                            genericObjects[3].position.x = -4272;
+                            genericObjects[4].position.x = -4272 + 100;
+                            platforms[0].position.x = -4272;
+                            obstacles[0].position.x = -4272 + 985;
+                            break;
+                        case 5:
+                            scrollOffSet = 3183;
+                            player.position.x = 300;
+                            player.position.y = 481,4;
+                            genericObjects[0].position.x = -15,9;
+                            genericObjects[1].position.x = -318;
+                            genericObjects[2].position.x = -636;
+                            genericObjects[3].position.x = -3183;
+                            genericObjects[4].position.x = -3183 + 100;
+                            platforms[0].position.x = -3183;
+                            obstacles[0].position.x = -3183 + 985;
+                            break;
+                        case 6:
+                            scrollOffSet = 4272;
+                            player.position.x = 670;
+                            player.position.y = 481,4;
+                            genericObjects[0].position.x = -21,36;
+                            genericObjects[1].position.x = -427,2;
+                            genericObjects[2].position.x = -854,4;
+                            genericObjects[3].position.x = -4272;
+                            genericObjects[4].position.x = -4272 + 100;
+                            platforms[0].position.x = -4272;
+                            obstacles[0].position.x = -4272 + 985;
+                            break;
+                        default:
+                            break;
+                    }
+                    document.querySelector('.blackbox').style.opacity="0";
+                    phoneOut = false;
+                    document.querySelector('.phone-navbar').classList.add('hidden');
+                    menuIndex = 1;
+                    document.querySelector(`.menu-item:nth-child(${menuIndex})`).classList.add('activated');
+                    player.currentSprite = player.sprites.stand.right;
+                }, 1000);
             }
         }
         

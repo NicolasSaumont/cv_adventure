@@ -146,6 +146,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
   - [x] Harbour
   - [ ] Airport
   - [ ] Forest
+  - [ ] Arcade Game Center
 - [ ] Resume Content
   - [x] Visualize Experiences
   - [ ] Visualize Diplomas
@@ -154,11 +155,11 @@ _For more examples, please refer to the [Documentation](https://example.com)_
   - [ ] Visualize Hobbies
   - [ ] Visualize Contact
 - [x] Transitions
-- [ ] Sprites Creation
+- [x] Sprites Creation
   - [x] Standing sprites
   - [x] Running sprites
   - [x] Phoning sprites
-  - [ ] Teleporting sprites
+  - [x] Teleporting sprites
 - [x] Audio & Sounds effects
   - [x] Musics
   - [x] Sounds
