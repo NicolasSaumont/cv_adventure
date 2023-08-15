@@ -67,9 +67,14 @@ ul {
     position: absolute;
     width: 30px;
     height: 30px;
-    bottom: 30px;
-    right: 30px;
+    top: -40px;
+    right: 10px;
     cursor: pointer;
+}
+
+.diplomas-content .close-button {
+    top: 520px;
+    right: 30px;
 }
 
 .resume-content {

@@ -166,7 +166,7 @@ class AlertBubble {
         };
 
         if (player.position.x > 370) {
-            sessionStorage.setItem('alertBubbleDisappearedOnce', true)
+            sessionStorage.setItem('alertBubbleLibraryDisappearedOnce', true)
             alertOn = false;
         };
 

@@ -140,7 +140,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [ ] Level Creation
   - [x] Home Page
   - [x] Library
-  - [ ] City Hall
+  - [x] City Hall
   - [ ] Museum
   - [ ] School
   - [x] Harbour
@@ -149,7 +149,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
   - [ ] Arcade Game Center
 - [ ] Resume Content
   - [x] Visualize Experiences
-  - [ ] Visualize Diplomas
+  - [x] Visualize Diplomas
   - [ ] Visualize Skills
   - [ ] Visualize Portfolio
   - [ ] Visualize Hobbies

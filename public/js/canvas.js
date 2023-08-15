@@ -824,7 +824,10 @@ addEventListener('keydown', ({ code }) => {
             musicReloaded = true;
             // audio.home.play();
         }
-        if (sessionStorage.comeFrom === 'library') {
+        if (
+            sessionStorage.comeFrom === 'library'
+            || sessionStorage.comeFrom === 'cityHall'
+        ) {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
         }
@@ -852,7 +855,10 @@ addEventListener('keydown', ({ code }) => {
             musicReloaded = true;
             // audio.home.play();
         }
-        if (sessionStorage.comeFrom === 'library') {
+        if (
+            sessionStorage.comeFrom === 'library'
+            || sessionStorage.comeFrom === 'cityHall'
+        ) {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
         }
