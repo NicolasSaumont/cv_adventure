@@ -53,6 +53,13 @@ const audio = {
         volume: 0.5,
         loop: false,
         mute: false
+    }),
+    teleport: new Howl({
+        src: './audio/teleport.mp3',
+        html5: true,
+        volume: 0.5,
+        loop: false,
+        mute: false
     })
 }
 
@@ -69,6 +76,7 @@ function turnSoundOn() {
     audio.flipPages.mute(false);
     audio.closeBook.mute(false);
     audio.alert.mute(false);
+    audio.teleport.mute(false);
     sessionStorage.removeItem('soundOn');
     sessionStorage.setItem('soundOn', true);
 };
@@ -84,6 +92,7 @@ function turnSoundOff() {
     audio.flipPages.mute(true);
     audio.closeBook.mute(true);
     audio.alert.mute(true);
+    audio.teleport.mute(true);
     sessionStorage.removeItem('soundOn');
     sessionStorage.setItem('soundOn', false);
 };

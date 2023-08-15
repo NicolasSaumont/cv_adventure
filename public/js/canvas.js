@@ -114,7 +114,7 @@ class Player {
             this.frames.val++;
             if (this.frames.val >= 0 && (this.currentSprite === this.sprites.stand.right || this.currentSprite === this.sprites.stand.left)) this.frames.val = 0;
             else if (this.frames.val >= 6 && (this.currentSprite === this.sprites.run.right || this.currentSprite === this.sprites.run.left)) this.frames.val = 0;
-            else if (this.frames.val >= 6 && (this.currentSprite === this.sprites.takePhone.right)) this.frames.val = 0;
+            else if (this.frames.val >= 11 && (this.currentSprite === this.sprites.teleport.right)) this.frames.val = 0;
             else if (this.frames.val >= 0 && (this.currentSprite === this.sprites.watchPhone.right)) this.frames.val = 0;
             else if (this.frames.val >= 0 && (this.currentSprite === this.sprites.watchPhone.left)) this.frames.val = 0;
         };
@@ -957,6 +957,7 @@ addEventListener('keydown', ({ code }) => {
             document.querySelector('.sound-control_icon--on').classList.remove('hidden');
             sessionStorage.setItem("gameStarted", true);
             musicReloaded = true;
+            
         } else {
             if (
             sessionStorage.gameStarted === 'true' 
@@ -969,6 +970,7 @@ addEventListener('keydown', ({ code }) => {
         if (sessionStorage.comeFrom === 'library') {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
+            
         }
             if (phoneOut === false){
                 sessionStorage.removeItem('textHowToMoveDisappearedOnce')
@@ -993,6 +995,14 @@ addEventListener('keydown', ({ code }) => {
                 } else {
                     player.currentSprite = player.sprites.teleport.right;
                 };
+                if (sessionStorage.soundOn === 'true'){
+                    audio.home.mute(true);
+                    audio.teleport.play(); 
+                    setTimeout(() => {
+                        audio.home.mute(false);
+                    }, 1000);
+                }
+                
                 setTimeout(() => {
                     document.querySelector('.blackbox').style.opacity="1";
                 }, 800);
@@ -1081,6 +1091,7 @@ addEventListener('keydown', ({ code }) => {
                     menuIndex = 1;
                     document.querySelector(`.menu-item:nth-child(${menuIndex})`).classList.add('activated');
                     player.currentSprite = player.sprites.stand.right;
+                    
                 }, 1000);
             }
         }
