@@ -478,7 +478,7 @@ addEventListener('keydown', ({ code }) => {
             && watchDiplomas === false
         ) {
             watchDiplomas = true;
-            // document.querySelector(`.resume-content--page_${indexBookPage}`).classList.remove('hidden');
+            document.querySelector('.diplomas-content').classList.remove('hidden');
         };
         break;
     case 'Space':
@@ -497,7 +497,7 @@ addEventListener('keydown', ({ code }) => {
         break;
     case 'Escape':
         watchDiplomas = false;
-        // document.querySelector(`.resume-content--page_${indexBookPage}`).classList.add('hidden');
+        document.querySelector('.diplomas-content').classList.add('hidden');
         break;
     };
 });
@@ -526,7 +526,7 @@ addEventListener('keyup', ({ code }) => {
     spacePressed = false;
 });
 
-// document.querySelector('.close-button').addEventListener('click', (event) => {
-//     watchDiplomas = false;
-//     document.querySelector(`.resume-content--page_${indexBookPage}`).classList.add('hidden');
-// });
+document.querySelector('.close-button').addEventListener('click', (event) => {
+    watchDiplomas = false;
+    document.querySelector('.diplomas-content').classList.add('hidden');
+});
