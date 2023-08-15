@@ -8,6 +8,10 @@ const mainController = {
             res.render('library.ejs');
     },
 
+    getToCityHall(req, res) {
+            res.render('cityHall.ejs');
+    },
+
 
 }
 

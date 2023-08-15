@@ -58,7 +58,7 @@ class FrontObject {
 
         c.globalAlpha = 0; 
 
-            if (bookOpen === true) {
+            if (watchDiplomas === true) {
                 c.globalAlpha = 1; 
             };
 
@@ -157,16 +157,16 @@ class AlertBubble {
 
         c.globalAlpha = 0;
         // Gestion des apparitions et disparitions des bulles 'alert'
-        if (sessionStorage.alertBubbleLibraryDisappearedOnce === 'true') {
+        if (sessionStorage.alertBubbleCityHallDisappearedOnce === 'true') {
             c.globalAlpha = 0; 
         };
 
-        if (alertOn && sessionStorage.alertBubbleLibraryDisappearedOnce === undefined) {
+        if (alertOn && sessionStorage.alertBubbleCityHallDisappearedOnce === undefined) {
             c.globalAlpha = 1;
         };
 
         if (player.position.x > 370) {
-            sessionStorage.setItem('alertBubbleDisappearedOnce', true)
+            sessionStorage.setItem('alertBubbleCityHallDisappearedOnce', true)
             alertOn = false;
         };
 
@@ -178,8 +178,8 @@ class AlertBubble {
     update() {
 
         this.draw();
-        this.position.x = 423;
-        this.position.y = 325;
+        this.position.x = 440;
+        this.position.y = 270;
        
     };
 };
@@ -214,16 +214,6 @@ class DialogBubble {
 
         if (this.name === 'prohibitedPhone'){
             if (alertProhibitedPhone === true) {
-                c.globalAlpha = 1; 
-            };
-        };
-
-        if (this.name === 'interact'){
-            if (
-                player.position.x > 370 
-                && player.position.x < 470 
-                && sessionStorage.textHowToInteractDisappearedOnce === undefined
-                ) {
                 c.globalAlpha = 1; 
             };
         };
@@ -281,7 +271,7 @@ const platforms = [
     new Platform({ 
         x: 161, 
         y: 432,
-        image: createImage('/img/floorLibrary.png') 
+        image: createImage('/img/floorCityHall.png') 
     })
 ];
 
@@ -289,8 +279,8 @@ const genericObjects = [
     new GenericObject({
         x: 0,
         y: 0,
-        image: createImage('/img/insideLibrary.png'),
-        name: 'library'
+        image: createImage('/img/insideCityHall.png'),
+        name: 'cityHall'
     })
 ];
 
@@ -298,8 +288,8 @@ const frontObjects = [
     new FrontObject({
         x: 0,
         y: 0,
-        image: createImage('/img/openBook.png'),
-        name: 'openBook'
+        image: createImage('/img/diplomas.png'),
+        name: 'diplomas'
     })
 ];
 
@@ -325,15 +315,10 @@ const dialogBubbles = [
         image: createImage('/img/dialogBubble.png'), 
         name: `prohibitedPhone`,
         text: `Can't take my phone here...`,
-    }),
-    new DialogBubble({
-        image: createImage('/img/dialogBubble.png'), 
-        name: `interact`,
-        text: `Press 'up' to interact`,
     })
 ];
 
-let bookOpen = false;
+let watchDiplomas = false;
 
 let alertProhibitedPhone = false;
 
@@ -348,8 +333,6 @@ let runningSoundTurnedOn = false;
 let runningSoundAlreadyOn = false;
 
 let musicReloaded = false;
-
-let indexBookPage = 0;
 
 function animate() {
 
@@ -422,7 +405,7 @@ function animate() {
     if (player.position.x <= 160) {
         document.querySelector('.blackbox').style.opacity="1";
         sessionStorage.removeItem('comeFrom');
-        sessionStorage.setItem('comeFrom', 'library');
+        sessionStorage.setItem('comeFrom', 'cityHall');
         setTimeout(() => {
             location.href = '/';
         }, 100);
@@ -451,18 +434,12 @@ addEventListener('keydown', ({ code }) => {
             musicReloaded = true;
             // audio.interior.play();
         };
-        if (bookOpen === false){
+        if (watchDiplomas === false){
         runningSoundTurnedOn = true;
         keys.left.pressed = true;
         player.currentSprite = player.sprites.run.left;
         lastKey = 'ArrowLeft';
         alertProhibitedPhone = false;
-        };
-        if (bookOpen === true && indexBookPage > 1){
-            audio.flipPages.play();
-            document.querySelector(`.resume-content--page_${indexBookPage}`).classList.add('hidden');
-            indexBookPage--;
-            document.querySelector(`.resume-content--page_${indexBookPage}`).classList.remove('hidden');
         };
         break;
     case 'ArrowRight':
@@ -479,9 +456,9 @@ addEventListener('keydown', ({ code }) => {
             musicReloaded = true;
             // audio.interior.play();
         };
-        if (bookOpen === false){
-            if (sessionStorage.alertSoundLibrary === undefined){
-                sessionStorage.setItem('alertSoundLibrary', true);
+        if (watchDiplomas === false){
+            if (sessionStorage.alertSoundCityHall === undefined){
+                sessionStorage.setItem('alertSoundCityHall', true);
                 audio.alert.play();
             }
             alertOn = true;
@@ -491,29 +468,21 @@ addEventListener('keydown', ({ code }) => {
             lastKey = 'ArrowRight';
             alertProhibitedPhone = false;
         };
-        if (bookOpen === true && indexBookPage < 8){
-            audio.flipPages.play();
-            document.querySelector(`.resume-content--page_${indexBookPage}`).classList.add('hidden');
-            indexBookPage++;
-            document.querySelector(`.resume-content--page_${indexBookPage}`).classList.remove('hidden');
-        };
         break;
     case 'ArrowDown':
         break;
     case 'ArrowUp':
         if (
-            player.position.x > 370 
-            && player.position.x < 470 
-            && bookOpen === false
+            player.position.x > 400 
+            && player.position.x < 500 
+            && watchDiplomas === false
         ) {
-            bookOpen = true;
-            sessionStorage.setItem('textHowToInteractDisappearedOnce', true);
-            indexBookPage = 1;
-            document.querySelector(`.resume-content--page_${indexBookPage}`).classList.remove('hidden');
+            watchDiplomas = true;
+            // document.querySelector(`.resume-content--page_${indexBookPage}`).classList.remove('hidden');
         };
         break;
     case 'Space':
-        if (spacePressed === false && bookOpen === false) {
+        if (spacePressed === false && watchDiplomas === false) {
             if (player.velocity.y === 0) {
                 spacePressed = true;
                 audio.jump.play();
@@ -522,13 +491,13 @@ addEventListener('keydown', ({ code }) => {
         }
         break;
     case 'Enter':
-        if (bookOpen === false) {
+        if (watchDiplomas === false) {
             alertProhibitedPhone = true;
         }
         break;
     case 'Escape':
-        bookOpen = false;
-        document.querySelector(`.resume-content--page_${indexBookPage}`).classList.add('hidden');
+        watchDiplomas = false;
+        // document.querySelector(`.resume-content--page_${indexBookPage}`).classList.add('hidden');
         break;
     };
 });
@@ -557,7 +526,7 @@ addEventListener('keyup', ({ code }) => {
     spacePressed = false;
 });
 
-document.querySelector('.close-button').addEventListener('click', (event) => {
-    bookOpen = false;
-    document.querySelector(`.resume-content--page_${indexBookPage}`).classList.add('hidden');
-});
+// document.querySelector('.close-button').addEventListener('click', (event) => {
+//     watchDiplomas = false;
+//     document.querySelector(`.resume-content--page_${indexBookPage}`).classList.add('hidden');
+// });

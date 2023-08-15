@@ -621,6 +621,18 @@ function animate(req, res) {
                 platforms[0].position.x = -1070;
                 obstacles[0].position.x = -1070 + 985;
                 break;
+            case 'cityHall':
+                scrollOffSet = 1701;
+                player.position.x = 300;
+                player.position.y = 481,4;
+                genericObjects[0].position.x = -8,5;
+                genericObjects[1].position.x = -170;
+                genericObjects[2].position.x = -340;
+                genericObjects[3].position.x = -1701;
+                genericObjects[4].position.x = -1701 + 100;
+                platforms[0].position.x = -1701;
+                obstacles[0].position.x = -1701 + 985;
+                break;
             default:
                 break;
         }
@@ -891,7 +903,11 @@ addEventListener('keydown', ({ code }) => {
                     location.href = location.pathname + 'library';
                 }, 100);
             } else if (scrollOffSet + player.position.x >= 1940 && scrollOffSet + player.position.x <= 2060) {
-                console.log('Vous pouvez entrer dans le City Hall');
+                sessionStorage.removeItem('comeFrom');
+                sessionStorage.setItem('comeFrom', 'outside');
+                setTimeout(() => {
+                    location.href = location.pathname + 'cityHall';
+                }, 100);
             } else if (scrollOffSet + player.position.x >= 2965 && scrollOffSet + player.position.x <= 3060) {
                 console.log('Appuyer sur "up" pour avoir un snack');
                 // quoteSnackAppeared = false;
@@ -927,7 +943,10 @@ addEventListener('keydown', ({ code }) => {
             musicReloaded = true;
             // audio.home.play();
         }
-        if (sessionStorage.comeFrom === 'library') {
+        if (
+            sessionStorage.comeFrom === 'library'
+            || sessionStorage.comeFrom === 'cityHall'
+        ) {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
         }
@@ -967,7 +986,10 @@ addEventListener('keydown', ({ code }) => {
             musicReloaded = true;
             // audio.home.play();
         }
-        if (sessionStorage.comeFrom === 'library') {
+        if (
+            sessionStorage.comeFrom === 'library'
+            || sessionStorage.comeFrom === 'cityHall'
+        ) {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
             
