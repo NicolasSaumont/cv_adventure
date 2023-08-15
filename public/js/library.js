@@ -451,11 +451,12 @@ addEventListener('keydown', ({ code }) => {
             && sessionStorage.comeFrom === undefined
         ) {
             musicReloaded = true;
-            audio.interior.play();
+            // audio.interior.play();
         };
         if (sessionStorage.comeFrom === 'outside') {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
+            // audio.interior.play();
         };
         if (bookOpen === false){
         runningSoundTurnedOn = true;
@@ -478,11 +479,12 @@ addEventListener('keydown', ({ code }) => {
             && sessionStorage.comeFrom === undefined
         ) {
             musicReloaded = true;
-            audio.interior.play();
+            // audio.interior.play();
         };
         if (sessionStorage.comeFrom === 'outside') {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
+            // audio.interior.play();
         };
         if (bookOpen === false){
             if (sessionStorage.alertSound === undefined){

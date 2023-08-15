@@ -97,6 +97,14 @@ function turnSoundOff() {
     sessionStorage.setItem('soundOn', false);
 };
 
+if (sessionStorage.soundOn === undefined || sessionStorage.soundOn === 'true'){
+    turnSoundOn();
+};
+
+if (sessionStorage.soundOn === 'false'){
+    turnSoundOff();
+};
+
 soundController.addEventListener('click', (event) => {    
     if (sessionStorage.soundOn === 'true') {
         turnSoundOff();

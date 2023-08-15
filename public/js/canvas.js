@@ -506,7 +506,6 @@ const obstacles = [
 
 const genericObjects = [
     new GenericObject({
-        // Revenir de la library va modifier genericObject.position.x ou scrollOffSet
         x: 0,
         y: 0,
         image: createImage('/img/backgroundSky.png'),
@@ -793,9 +792,10 @@ function animate(req, res) {
 
 };
 
+
 document.querySelector(`.menu-item:nth-child(${menuIndex})`).classList.add('activated');
 
-audio.home.play(); 
+audio.home.play();  
 
 document.querySelector('.blackbox').style.opacity="0";
 
@@ -810,7 +810,7 @@ addEventListener('keydown', ({ code }) => {
             && sessionStorage.comeFrom === undefined
         ) {
             musicReloaded = true;
-            audio.home.play();
+            // audio.home.play();
         }
         if (sessionStorage.comeFrom === 'library') {
             sessionStorage.removeItem('comeFrom');
@@ -838,7 +838,7 @@ addEventListener('keydown', ({ code }) => {
             && sessionStorage.comeFrom === undefined
         ) {
             musicReloaded = true;
-            audio.home.play();
+            // audio.home.play();
         }
         if (sessionStorage.comeFrom === 'library') {
             sessionStorage.removeItem('comeFrom');
@@ -925,7 +925,7 @@ addEventListener('keydown', ({ code }) => {
             && sessionStorage.comeFrom === undefined
         ) {
             musicReloaded = true;
-            audio.home.play();
+            // audio.home.play();
         }
         if (sessionStorage.comeFrom === 'library') {
             sessionStorage.removeItem('comeFrom');
@@ -952,7 +952,7 @@ addEventListener('keydown', ({ code }) => {
         break;
     case 'Enter':
         if (sessionStorage.gameStarted === undefined) {
-            audio.home.play();
+            // audio.home.play();
             sessionStorage.setItem('soundOn', true);
             document.querySelector('.sound-control_icon--on').classList.remove('hidden');
             sessionStorage.setItem("gameStarted", true);
@@ -965,7 +965,7 @@ addEventListener('keydown', ({ code }) => {
             && sessionStorage.comeFrom === undefined
         ) {
             musicReloaded = true;
-            audio.home.play();
+            // audio.home.play();
         }
         if (sessionStorage.comeFrom === 'library') {
             sessionStorage.removeItem('comeFrom');
