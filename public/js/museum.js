@@ -354,34 +354,10 @@ const genericObjects = [
 
 const frontObjects = [
     new FrontObject({
-        x: 0,
-        y: 0,
-        image: createImage('/img/hockeyHobby.png'),
-        name: 'hockeyHobby'
-    }),
-    new FrontObject({
-        x: 0,
-        y: 0,
-        image: createImage('/img/hockeyHobby.png'),
-        name: 'retroGamingHobby'
-    }),
-    new FrontObject({
-        x: 0,
-        y: 0,
-        image: createImage('/img/hockeyHobby.png'),
-        name: 'writingHobby'
-    }),
-    new FrontObject({
-        x: 0,
-        y: 0,
-        image: createImage('/img/hockeyHobby.png'),
-        name: 'historyHobby'
-    }),
-    new FrontObject({
-        x: 0,
-        y: 0,
-        image: createImage('/img/hockeyHobby.png'),
-        name: 'detectiveNovelsHobby'
+        x: (canvas.width - 800) / 2,
+        y: (canvas.height - 800) / 2,
+        image: createImage('/img/piedestal.png'),
+        name: 'piedestal'
     })
 ];
 
@@ -684,12 +660,48 @@ addEventListener('keydown', ({ code }) => {
             
         };
         if (
-            player.position.x > 400 
-            && player.position.x < 500 
+            player.position.x > 395 
+            && player.position.x < 470 
             && watchHobbies === false
+            && whichFloor === 'ground'
         ) {
             watchHobbies = true;
             document.querySelector('.hobbies-content_hobby--hockey').classList.remove('hidden');
+        };
+        if (
+            player.position.x > 539 
+            && player.position.x < 614 
+            && watchHobbies === false
+            && whichFloor === 'ground'
+        ) {
+            watchHobbies = true;
+            document.querySelector('.hobbies-content_hobby--retro-gaming').classList.remove('hidden');
+        };
+        if (
+            player.position.x > 465 
+            && player.position.x < 540 
+            && watchHobbies === false
+            && whichFloor === 'first'
+        ) {
+            watchHobbies = true;
+            document.querySelector('.hobbies-content_hobby--writing').classList.remove('hidden');
+        };
+        if (
+            player.position.x > 321 
+            && player.position.x < 400 
+            && watchHobbies === false
+            && whichFloor === 'first'
+        ) {
+            watchHobbies = true;
+            document.querySelector('.hobbies-content_hobby--history').classList.remove('hidden');
+        };
+        if (
+            player.position.x > 186 
+            && player.position.x < 255 
+            && watchHobbies === false
+        ) {
+            watchHobbies = true;
+            document.querySelector('.hobbies-content_hobby--detective-novels').classList.remove('hidden');
         };
         break;
     case 'Space':
@@ -708,7 +720,11 @@ addEventListener('keydown', ({ code }) => {
         break;
     case 'Escape':
         watchHobbies = false;
-        document.querySelector('.hobbies-content_hobby').classList.add('hidden');
+        const elementsToHide = document.querySelectorAll('.hobbies-content_hobby');
+            elementsToHide.forEach(elementToHide => {
+                elementToHide.classList.remove('hidden');
+                elementToHide.classList.add('hidden');
+            });
         break;
     };
 });
@@ -738,6 +754,10 @@ addEventListener('keyup', ({ code }) => {
 });
 
 document.querySelector('.close-button').addEventListener('click', (event) => {
-    watchDiplomas = false;
-    document.querySelector('.hobbies-content_hobby').classList.add('hidden');
+    watchHobbies = false;
+    const elementsToHide = document.querySelectorAll('.hobbies-content_hobby');
+    elementsToHide.forEach(elementToHide => {
+        elementToHide.classList.remove('hidden');
+        elementToHide.classList.add('hidden');
+    });
 });

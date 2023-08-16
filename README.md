@@ -152,7 +152,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
   - [x] Visualize Diplomas
   - [ ] Visualize Skills
   - [ ] Visualize Portfolio
-  - [ ] Visualize Hobbies
+  - [x] Visualize Hobbies
   - [ ] Visualize Contact
 - [x] Transitions
 - [x] Sprites Creation
