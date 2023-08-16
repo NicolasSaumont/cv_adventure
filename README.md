@@ -141,7 +141,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
   - [x] Home Page
   - [x] Library
   - [x] City Hall
-  - [ ] Museum
+  - [x] Museum
   - [ ] School
   - [x] Harbour
   - [ ] Airport

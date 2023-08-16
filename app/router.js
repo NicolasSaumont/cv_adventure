@@ -10,4 +10,6 @@ router.get('/library', mainController.getToLibrary);
 
 router.get('/cityHall', mainController.getToCityHall);
 
+router.get('/museum', mainController.getToMuseum);
+
 module.exports = router;

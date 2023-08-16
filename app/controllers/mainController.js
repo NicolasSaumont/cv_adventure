@@ -12,6 +12,10 @@ const mainController = {
             res.render('cityHall.ejs');
     },
 
+    getToMuseum(req, res) {
+            res.render('museum.ejs');
+    },
+
 
 }
 

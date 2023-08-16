@@ -577,6 +577,8 @@ let musicReloaded = false;
 function animate(req, res) {
     requestAnimationFrame(animate);
 
+    console.log (sessionStorage.elevatorAlreadyTaken);
+
     if (sessionStorage.gameStarted === undefined) {
         genericObjects.forEach(genericObject => {
             if (genericObject.name === 'background-sky' || genericObject.name === 'title' || genericObject.name === 'starting') {
@@ -632,6 +634,18 @@ function animate(req, res) {
                 genericObjects[4].position.x = -1701 + 100;
                 platforms[0].position.x = -1701;
                 obstacles[0].position.x = -1701 + 985;
+                break;
+            case 'museum':
+                scrollOffSet = 3183;
+                player.position.x = 300;
+                player.position.y = 481,4;
+                genericObjects[0].position.x = -15,9;
+                genericObjects[1].position.x = -318;
+                genericObjects[2].position.x = -636;
+                genericObjects[3].position.x = -3183;
+                genericObjects[4].position.x = -3183 + 100;
+                platforms[0].position.x = -3183;
+                obstacles[0].position.x = -3183 + 985;
                 break;
             default:
                 break;
@@ -822,11 +836,11 @@ addEventListener('keydown', ({ code }) => {
             && sessionStorage.comeFrom === undefined
         ) {
             musicReloaded = true;
-            // audio.home.play();
         }
         if (
             sessionStorage.comeFrom === 'library'
             || sessionStorage.comeFrom === 'cityHall'
+            || sessionStorage.comeFrom === 'museum'
         ) {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
@@ -853,11 +867,11 @@ addEventListener('keydown', ({ code }) => {
             && sessionStorage.comeFrom === undefined
         ) {
             musicReloaded = true;
-            // audio.home.play();
         }
         if (
             sessionStorage.comeFrom === 'library'
             || sessionStorage.comeFrom === 'cityHall'
+            || sessionStorage.comeFrom === 'museum'
         ) {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
@@ -920,7 +934,11 @@ addEventListener('keydown', ({ code }) => {
                 // textHowToGetSnackDisappearedOnce = true;
                 // quoteSnackAppeared = true;
             } else if (scrollOffSet + player.position.x >= 3440 && scrollOffSet + player.position.x <= 3530) {
-                console.log('Vous pouvez entrer dans le Museum');
+                sessionStorage.removeItem('comeFrom');
+                sessionStorage.setItem('comeFrom', 'outside');
+                setTimeout(() => {
+                    location.href = location.pathname + 'museum';
+                }, 100);
             } else if (scrollOffSet + player.position.x >= 4420 && scrollOffSet + player.position.x <= 4510) {
                 console.log('Vous pouvez entrer dans la school');
             } else if (scrollOffSet + player.position.x >= 4910 && scrollOffSet + player.position.x <= 4970) {
@@ -947,11 +965,11 @@ addEventListener('keydown', ({ code }) => {
             && sessionStorage.comeFrom === undefined
         ) {
             musicReloaded = true;
-            // audio.home.play();
         }
         if (
             sessionStorage.comeFrom === 'library'
             || sessionStorage.comeFrom === 'cityHall'
+            || sessionStorage.comeFrom === 'museum'
         ) {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
@@ -977,7 +995,6 @@ addEventListener('keydown', ({ code }) => {
         break;
     case 'Enter':
         if (sessionStorage.gameStarted === undefined) {
-            // audio.home.play();
             sessionStorage.setItem('soundOn', true);
             document.querySelector('.sound-control_icon--on').classList.remove('hidden');
             sessionStorage.setItem("gameStarted", true);
@@ -990,11 +1007,11 @@ addEventListener('keydown', ({ code }) => {
             && sessionStorage.comeFrom === undefined
         ) {
             musicReloaded = true;
-            // audio.home.play();
         }
         if (
             sessionStorage.comeFrom === 'library'
             || sessionStorage.comeFrom === 'cityHall'
+            || sessionStorage.comeFrom === 'museum'
         ) {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;

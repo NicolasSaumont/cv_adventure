@@ -60,6 +60,20 @@ const audio = {
         volume: 0.5,
         loop: false,
         mute: false
+    }),
+    elevatorMusic: new Howl({
+        src: './audio/elevatorMusic.mp3',
+        html5: true,
+        volume: 0.5,
+        loop: false,
+        mute: false
+    }),
+    elevatorDing: new Howl({
+        src: './audio/elevatorDing.mp3',
+        html5: true,
+        volume: 0.5,
+        loop: false,
+        mute: false
     })
 }
 
@@ -77,6 +91,8 @@ function turnSoundOn() {
     audio.closeBook.mute(false);
     audio.alert.mute(false);
     audio.teleport.mute(false);
+    audio.elevatorMusic.mute(false);
+    audio.elevatorDing.mute(false);
     sessionStorage.removeItem('soundOn');
     sessionStorage.setItem('soundOn', true);
 };
@@ -93,6 +109,8 @@ function turnSoundOff() {
     audio.closeBook.mute(true);
     audio.alert.mute(true);
     audio.teleport.mute(true);
+    audio.elevatorMusic.mute(true);
+    audio.elevatorDing.mute(true);
     sessionStorage.removeItem('soundOn');
     sessionStorage.setItem('soundOn', false);
 };
