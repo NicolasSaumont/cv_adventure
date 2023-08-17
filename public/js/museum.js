@@ -576,11 +576,19 @@ addEventListener('keydown', ({ code }) => {
             musicReloaded = true;
         };
         if (watchHobbies === false){
-        runningSoundTurnedOn = true;
-        keys.left.pressed = true;
-        player.currentSprite = player.sprites.run.left;
-        lastKey = 'ArrowLeft';
-        alertProhibitedPhone = false;
+            runningSoundTurnedOn = true;
+            keys.left.pressed = true;
+            player.currentSprite = player.sprites.run.left;
+            lastKey = 'ArrowLeft';
+            alertProhibitedPhone = false;
+        };
+        if (watchHobbies === true){
+            watchHobbies = false;
+            const elementsToHide = document.querySelectorAll('.hobbies-content_hobby');
+            elementsToHide.forEach(elementToHide => {
+                elementToHide.classList.remove('hidden');
+                elementToHide.classList.add('hidden');
+            });
         };
         break;
     case 'ArrowRight':
@@ -612,6 +620,14 @@ addEventListener('keydown', ({ code }) => {
             player.currentSprite = player.sprites.run.right;
             lastKey = 'ArrowRight';
             alertProhibitedPhone = false;
+        };
+        if (watchHobbies === true){
+            watchHobbies = false;
+            const elementsToHide = document.querySelectorAll('.hobbies-content_hobby');
+            elementsToHide.forEach(elementToHide => {
+                elementToHide.classList.remove('hidden');
+                elementToHide.classList.add('hidden');
+            });
         };
         break;
     case 'ArrowDown':
@@ -721,10 +737,10 @@ addEventListener('keydown', ({ code }) => {
     case 'Escape':
         watchHobbies = false;
         const elementsToHide = document.querySelectorAll('.hobbies-content_hobby');
-            elementsToHide.forEach(elementToHide => {
-                elementToHide.classList.remove('hidden');
-                elementToHide.classList.add('hidden');
-            });
+        elementsToHide.forEach(elementToHide => {
+            elementToHide.classList.remove('hidden');
+            elementToHide.classList.add('hidden');
+        });
         break;
     };
 });
