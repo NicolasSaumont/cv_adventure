@@ -441,6 +441,10 @@ addEventListener('keydown', ({ code }) => {
         lastKey = 'ArrowLeft';
         alertProhibitedPhone = false;
         };
+        if (watchDiplomas === true){
+            watchDiplomas = false;
+            document.querySelector('.diplomas-content').classList.add('hidden');
+        };
         break;
     case 'ArrowRight':
         if (
@@ -467,6 +471,10 @@ addEventListener('keydown', ({ code }) => {
             player.currentSprite = player.sprites.run.right;
             lastKey = 'ArrowRight';
             alertProhibitedPhone = false;
+        };
+        if (watchDiplomas === true){
+            watchDiplomas = false;
+            document.querySelector('.diplomas-content').classList.add('hidden');
         };
         break;
     case 'ArrowDown':

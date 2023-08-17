@@ -58,7 +58,7 @@ class FrontObject {
 
         c.globalAlpha = 0; 
 
-            if (watchHobbies === true) {
+            if (watchSkills === true) {
                 c.globalAlpha = 1; 
             };
 
@@ -158,74 +158,46 @@ class AlertBubble {
 
         c.globalAlpha = 0;
         // Gestion des apparitions et disparitions des bulles 'alert'
-        if (this.name === 'alertBubbleHockey') {
-            if (sessionStorage.alertBubbleMuseumHockeyDisappearedOnce === 'true') {
+        if (this.name === 'alertBubbleHardSkills') {
+            if (sessionStorage.alertBubbleSchoolHardSkillsDisappearedOnce === 'true') {
                 c.globalAlpha = 0; 
             };
 
-            if (alertHockeyOn && sessionStorage.alertBubbleMuseumHockeyDisappearedOnce === undefined) {
+            if (alertHardSkillsOn && sessionStorage.alertBubbleSchoolHardSkillsDisappearedOnce === undefined) {
                 c.globalAlpha = 1;
             };
 
-            if (player.position.x > 370) {
-                sessionStorage.setItem('alertBubbleMuseumHockeyDisappearedOnce', true)
-                alertHockeyOn = false;
+            if (player.position.x > 280) {
+                sessionStorage.setItem('alertBubbleSchoolHardSkillsDisappearedOnce', true)
+                alertHardSkillsOn = false;
             };
         };
-        if (this.name === 'alertBubbleRetroGaming') {
-            if (sessionStorage.alertBubbleMuseumRetroGamingDisappearedOnce === 'true') {
+        if (this.name === 'alertBubbleLanguages') {
+            if (sessionStorage.alertBubbleSchoolLanguagesDisappearedOnce === 'true') {
                 c.globalAlpha = 0; 
             };
 
-            if (alertRetroGamingOn && sessionStorage.alertBubbleMuseumRetroGamingDisappearedOnce === undefined) {
+            if (alertLanguagesOn && sessionStorage.alertBubbleSchoolLanguagesDisappearedOnce === undefined) {
                 c.globalAlpha = 1;
             };
 
-            if (player.position.x > 514) {
-                sessionStorage.setItem('alertBubbleMuseumRetroGamingDisappearedOnce', true)
-                alertRetroGamingOn = false;
+            if (player.position.x > 490) {
+                sessionStorage.setItem('alertBubbleSchoolLanguagesDisappearedOnce', true)
+                alertLanguagesOn = false;
             };
         };
-        if (this.name === 'alertBubbleWriting') {
-            if (sessionStorage.alertBubbleMuseumWritingDisappearedOnce === 'true') {
+        if (this.name === 'alertBubbleSoftSkills') {
+            if (sessionStorage.alertBubbleSchoolSoftSkillsDisappearedOnce === 'true') {
                 c.globalAlpha = 0; 
             };
 
-            if (alertWritingOn && sessionStorage.alertBubbleMuseumWritingDisappearedOnce === undefined) {
+            if (alertSoftSkillsOn && sessionStorage.alertBubbleSchoolSoftSkillsDisappearedOnce === undefined) {
                 c.globalAlpha = 1;
             };
 
-            if (player.position.x < 565 && whichFloor === 'first') {
-                sessionStorage.setItem('alertBubbleMuseumWritingDisappearedOnce', true)
-                alertWritingOn = false;
-            };
-        };
-        if (this.name === 'alertBubbleHistory') {
-            if (sessionStorage.alertBubbleMuseumHistoryDisappearedOnce === 'true') {
-                c.globalAlpha = 0; 
-            };
-
-            if (alertHistoryOn && sessionStorage.alertBubbleMuseumHistoryDisappearedOnce === undefined) {
-                c.globalAlpha = 1;
-            };
-
-            if (player.position.x < 421 && whichFloor === 'first') {
-                sessionStorage.setItem('alertBubbleMuseumHistoryDisappearedOnce', true)
-                alertHistoryOn = false;
-            };
-        };
-        if (this.name === 'alertBubbleDetectiveNovels') {
-            if (sessionStorage.alertBubbleMuseumDetectiveNovelsDisappearedOnce === 'true') {
-                c.globalAlpha = 0; 
-            };
-
-            if (alertDetectiveNovelsOn && sessionStorage.alertBubbleMuseumDetectiveNovelsDisappearedOnce === undefined) {
-                c.globalAlpha = 1;
-            };
-
-            if (player.position.x < 277 && whichFloor === 'first') {
-                sessionStorage.setItem('alertBubbleMuseumDetectiveNovelsDisappearedOnce', true)
-                alertDetectiveNovelsOn = false;
+            if (player.position.x < 600 && whichFloor === 'first') {
+                sessionStorage.setItem('alertBubbleSchoolSoftSkillsDisappearedOnce', true)
+                alertSoftSkillsOn = false;
             };
         };
 
@@ -328,12 +300,12 @@ const platforms = [
     new Platform({ 
         x: 161, 
         y: 432,
-        image: createImage('/img/groundFloorMuseum.png') 
+        image: createImage('/img/groundFloorSchool.png') 
     }),
     new Platform({ 
         x: 160, 
         y: 288,
-        image: createImage('/img/firstFloorMuseum.png') 
+        image: createImage('/img/firstFloorSchool.png') 
     })
 ];
 
@@ -341,23 +313,17 @@ const genericObjects = [
     new GenericObject({
         x: 0,
         y: 0,
-        image: createImage('/img/insideMuseumGroundFloor.png'),
-        name: 'museumGroundFloor'
-    }),
-    new GenericObject({
-        x: 0,
-        y: 0,
-        image: createImage('/img/insideMuseumFirstFloor.png'),
-        name: 'museumFirstFloor'
+        image: createImage('/img/insideSchool.png'),
+        name: 'school'
     })
 ];
 
 const frontObjects = [
     new FrontObject({
-        x: (canvas.width - 800) / 2,
-        y: (canvas.height - 800) / 2,
-        image: createImage('/img/piedestal.png'),
-        name: 'piedestal'
+        x: (canvas.width - 1280) / 2,
+        y: (canvas.height - 853) / 2,
+        image: createImage('/img/blackboard.png'),
+        name: 'blackboard'
     })
 ];
 
@@ -375,32 +341,20 @@ const player = new Player();
 const alertBubbles = [
     new AlertBubble({
         image: createImage('/img/alertBubble.png'), 
-        name: 'alertBubbleHockey',
-        positionX: 424,
+        name: 'alertBubbleHardSkills',
+        positionX: 295,
         positionY: 290 
     }),
     new AlertBubble({
         image: createImage('/img/alertBubble.png'), 
-        name: 'alertBubbleRetroGaming',
-        positionX: 568,
+        name: 'alertBubbleLanguages',
+        positionX: 503,
         positionY: 290 
     }),
     new AlertBubble({
         image: createImage('/img/alertBubble.png'), 
-        name: 'alertBubbleWriting',
-        positionX: 504,
-        positionY: 145 
-    }),
-    new AlertBubble({
-        image: createImage('/img/alertBubble.png'), 
-        name: 'alertBubbleHistory',
-        positionX: 360,
-        positionY: 145 
-    }),
-    new AlertBubble({
-        image: createImage('/img/alertBubble.png'), 
-        name: 'alertBubbleDetectiveNovels',
-        positionX: 216,
+        name: 'alertBubbleSoftSkills',
+        positionX: 567,
         positionY: 145 
     })
 ];
@@ -413,15 +367,13 @@ const dialogBubbles = [
     })
 ];
 
-let watchHobbies = false;
+let watchSkills = false;
 
 let alertProhibitedPhone = false;
 
-let alertHockeyOn = false;
-let alertRetroGamingOn = false;
-let alertWritingOn = false;
-let alertHistoryOn = false;
-let alertDetectiveNovelsOn = false;
+let alertHardSkillsOn = false;
+let alertLanguagesOn = false;
+let alertSoftSkillsOn = false;
 
 let lastKey = '';
 
@@ -435,25 +387,14 @@ let musicReloaded = false;
 
 let whichFloor = 'ground';
 
-let inElevator = false;
+let inStairs = false;
 
 function animate() {
 
     requestAnimationFrame(animate);
 
     genericObjects.forEach(genericObject => {
-        if (whichFloor === 'ground'){
-            if (genericObject.name === 'museumGroundFloor'){
-                genericObject.draw();  
-            };
-        };
-
-        if (whichFloor === 'first'){
-            if (genericObject.name === 'museumFirstFloor'){
-                genericObject.draw();  
-            };
-        };
-        
+        genericObject.draw();  
     });
 
     platforms.forEach(platform => {
@@ -470,7 +411,7 @@ function animate() {
     
     player.update();
 
-    if (inElevator){
+    if (inStairs){
         player.currentSprite = player.sprites.stand.left;
         switch (whichFloor) {
             case 'ground':
@@ -486,7 +427,6 @@ function animate() {
         };
     };
     
-
     frontObjects.forEach(frontObject => {
         frontObject.draw() 
     });
@@ -544,7 +484,7 @@ function animate() {
     // Exit
     if (player.position.x <= 160) {
         document.querySelector('.blackbox').style.opacity="1";
-        sessionStorage.setItem('comeFrom', 'museum');
+        sessionStorage.setItem('comeFrom', 'school');
         setTimeout(() => {
             location.href = '/';
         }, 100);
@@ -560,8 +500,8 @@ animate();
 addEventListener('keydown', ({ code }) => {
     switch (code) {
     case 'ArrowLeft':
-        if (inElevator){
-            inElevator = false;
+        if (inStairs){
+            inStairs = false;
         };
         if (
             sessionStorage.gameStarted === 'true' 
@@ -573,16 +513,16 @@ addEventListener('keydown', ({ code }) => {
         if (sessionStorage.comeFrom === 'outside') {
             musicReloaded = true;
         };
-        if (watchHobbies === false){
+        if (watchSkills === false){
             runningSoundTurnedOn = true;
             keys.left.pressed = true;
             player.currentSprite = player.sprites.run.left;
             lastKey = 'ArrowLeft';
             alertProhibitedPhone = false;
         };
-        if (watchHobbies === true){
-            watchHobbies = false;
-            const elementsToHide = document.querySelectorAll('.hobbies-content_hobby');
+        if (watchSkills === true){
+            watchSkills = false;
+            const elementsToHide = document.querySelectorAll('.skills-content_skill');
             elementsToHide.forEach(elementToHide => {
                 elementToHide.classList.remove('hidden');
                 elementToHide.classList.add('hidden');
@@ -591,8 +531,8 @@ addEventListener('keydown', ({ code }) => {
         };
         break;
     case 'ArrowRight':
-        if (inElevator){
-            inElevator = false;
+        if (inStairs){
+            inStairs = false;
         };
         if (
             sessionStorage.gameStarted === 'true' 
@@ -604,25 +544,23 @@ addEventListener('keydown', ({ code }) => {
         if (sessionStorage.comeFrom === 'outside') {
             musicReloaded = true;
         };
-        if (watchHobbies === false){
-            if (sessionStorage.alertSoundMuseum === undefined){
-                sessionStorage.setItem('alertSoundMuseum', true);
+        if (watchSkills === false){
+            if (sessionStorage.alertSoundSchool === undefined){
+                sessionStorage.setItem('alertSoundSchool', true);
                 audio.alert.play();
             }
-            alertHockeyOn = true;
-            alertRetroGamingOn = true;
-            alertWritingOn = true;
-            alertHistoryOn = true;
-            alertDetectiveNovelsOn = true;
+            alertHardSkillsOn = true;
+            alertLanguagesOn = true;
+            alertSoftSkillsOn = true;
             runningSoundTurnedOn = true;
             keys.right.pressed = true;
             player.currentSprite = player.sprites.run.right;
             lastKey = 'ArrowRight';
             alertProhibitedPhone = false;
         };
-        if (watchHobbies === true){
-            watchHobbies = false;
-            const elementsToHide = document.querySelectorAll('.hobbies-content_hobby');
+        if (watchSkills === true){
+            watchSkills = false;
+            const elementsToHide = document.querySelectorAll('.skills-content_skill');
             elementsToHide.forEach(elementToHide => {
                 elementToHide.classList.remove('hidden');
                 elementToHide.classList.add('hidden');
@@ -634,99 +572,60 @@ addEventListener('keydown', ({ code }) => {
         break;
     case 'ArrowUp':
         if (
-            player.position.x >= 685
-            && player.position.x <= 740
+            player.position.x >= 715
+            && player.position.x <= 745
             && player.velocity.y === 0 
         ) {
             document.querySelector('.blackbox').style.opacity="1";
             if (sessionStorage.soundOn === 'true'){audio.interior.mute(true);};
-            if (sessionStorage.elevatorAlreadyTaken === undefined){
-                if (sessionStorage.soundOn === 'true'){audio.elevatorMusic.play();};
+            if (sessionStorage.soundOn === 'true'){audio.stairs.play();};
+            setTimeout(() => {
+                if (whichFloor === 'ground') {
+                    whichFloor = 'first';
+                    inStairs = true;
+                } else if (whichFloor === 'first') {
+                    whichFloor = 'ground';
+                    inStairs = true;
+                };
                 setTimeout(() => {
-                    if (whichFloor === 'ground') {
-                        whichFloor = 'first';
-                        inElevator = true;
-                    } else if (whichFloor === 'first') {
-                        whichFloor = 'ground';
-                        inElevator = true;
-                    };
-                    if (sessionStorage.soundOn === 'true'){audio.elevatorDing.play();};
-                    setTimeout(() => {
-                        document.querySelector('.blackbox').style.opacity="0";
-                        if (sessionStorage.soundOn === 'true'){audio.interior.mute(false);};
-                    }, 300);
-                }, 5800);  
-                sessionStorage.setItem('elevatorAlreadyTaken', true);
-            } else {
-                setTimeout(() => {
-                    if (whichFloor === 'ground') {
-                        whichFloor = 'first';
-                        inElevator = true;
-                    } else if (whichFloor === 'first') {
-                        whichFloor = 'ground';
-                        inElevator = true;
-                    };
-                    if (sessionStorage.soundOn === 'true'){
-                        audio.elevatorDing.play();
-                        audio.interior.mute(false);
-                    }
                     document.querySelector('.blackbox').style.opacity="0";
-                }, 100);
-            }
-            
+                    if (sessionStorage.soundOn === 'true'){audio.interior.mute(false);};
+                }, 300);
+            }, 2000);  
         };
         if (
-            player.position.x > 395 
-            && player.position.x < 470 
-            && watchHobbies === false
+            player.position.x > 280 
+            && player.position.x < 325 
+            && watchSkills === false
             && whichFloor === 'ground'
         ) {
-            watchHobbies = true;
-            document.querySelector('.hobbies-content_hobby--hockey').classList.remove('hidden');
+            watchSkills = true;
+            document.querySelector('.skills-content_skill--hard-skills').classList.remove('hidden');
             document.querySelector('.close-button').classList.remove('hidden');
         };
         if (
-            player.position.x > 539 
-            && player.position.x < 614 
-            && watchHobbies === false
+            player.position.x > 490 
+            && player.position.x < 535 
+            && watchSkills === false
             && whichFloor === 'ground'
         ) {
-            watchHobbies = true;
-            document.querySelector('.hobbies-content_hobby--retro-gaming').classList.remove('hidden');
+            watchSkills = true;
+            document.querySelector('.skills-content_skill--languages').classList.remove('hidden');
             document.querySelector('.close-button').classList.remove('hidden');
         };
         if (
-            player.position.x > 465 
-            && player.position.x < 540 
-            && watchHobbies === false
+            player.position.x > 550 
+            && player.position.x < 595 
+            && watchSkills === false
             && whichFloor === 'first'
         ) {
-            watchHobbies = true;
-            document.querySelector('.hobbies-content_hobby--writing').classList.remove('hidden');
-            document.querySelector('.close-button').classList.remove('hidden');
-        };
-        if (
-            player.position.x > 321 
-            && player.position.x < 400 
-            && watchHobbies === false
-            && whichFloor === 'first'
-        ) {
-            watchHobbies = true;
-            document.querySelector('.hobbies-content_hobby--history').classList.remove('hidden');
-            document.querySelector('.close-button').classList.remove('hidden');
-        };
-        if (
-            player.position.x > 186 
-            && player.position.x < 255 
-            && watchHobbies === false
-        ) {
-            watchHobbies = true;
-            document.querySelector('.hobbies-content_hobby--detective-novels').classList.remove('hidden');
+            watchSkills = true;
+            document.querySelector('.skills-content_skill--soft-skills').classList.remove('hidden');
             document.querySelector('.close-button').classList.remove('hidden');
         };
         break;
     case 'Space':
-        if (spacePressed === false && watchHobbies === false) {
+        if (spacePressed === false && watchSkills === false) {
             if (player.velocity.y === 0) {
                 spacePressed = true;
                 audio.jump.play();
@@ -735,13 +634,13 @@ addEventListener('keydown', ({ code }) => {
         }
         break;
     case 'Enter':
-        if (watchHobbies === false) {
+        if (watchSkills === false) {
             alertProhibitedPhone = true;
         }
         break;
     case 'Escape':
-        watchHobbies = false;
-        const elementsToHide = document.querySelectorAll('.hobbies-content_hobby');
+        watchSkills = false;
+        const elementsToHide = document.querySelectorAll('.skills-content_skill');
         elementsToHide.forEach(elementToHide => {
             elementToHide.classList.remove('hidden');
             elementToHide.classList.add('hidden');
@@ -776,8 +675,8 @@ addEventListener('keyup', ({ code }) => {
 });
 
 document.querySelector('.close-button').addEventListener('click', (event) => {
-    watchHobbies = false;
-    const elementsToHide = document.querySelectorAll('.hobbies-content_hobby');
+    watchSkills = false;
+    const elementsToHide = document.querySelectorAll('.skills-content_skill');
     elementsToHide.forEach(elementToHide => {
         elementToHide.classList.remove('hidden');
         elementToHide.classList.add('hidden');

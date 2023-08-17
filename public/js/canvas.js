@@ -647,6 +647,18 @@ function animate(req, res) {
                 platforms[0].position.x = -3183;
                 obstacles[0].position.x = -3183 + 985;
                 break;
+            case 'school':
+                scrollOffSet = 4164;
+                player.position.x = 300;
+                player.position.y = 481,4;
+                genericObjects[0].position.x = -20,8;
+                genericObjects[1].position.x = -416;
+                genericObjects[2].position.x = -832;
+                genericObjects[3].position.x = -4164;
+                genericObjects[4].position.x = -4164 + 100;
+                platforms[0].position.x = -4164;
+                obstacles[0].position.x = -4164 + 985;
+                break;
             default:
                 break;
         }
@@ -818,7 +830,6 @@ function animate(req, res) {
 
 };
 
-
 document.querySelector(`.menu-item:nth-child(${menuIndex})`).classList.add('activated');
 
 audio.home.play();  
@@ -841,6 +852,7 @@ addEventListener('keydown', ({ code }) => {
             sessionStorage.comeFrom === 'library'
             || sessionStorage.comeFrom === 'cityHall'
             || sessionStorage.comeFrom === 'museum'
+            || sessionStorage.comeFrom === 'school'
         ) {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
@@ -872,6 +884,7 @@ addEventListener('keydown', ({ code }) => {
             sessionStorage.comeFrom === 'library'
             || sessionStorage.comeFrom === 'cityHall'
             || sessionStorage.comeFrom === 'museum'
+            || sessionStorage.comeFrom === 'school'
         ) {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
@@ -941,6 +954,11 @@ addEventListener('keydown', ({ code }) => {
                 }, 100);
             } else if (scrollOffSet + player.position.x >= 4420 && scrollOffSet + player.position.x <= 4510) {
                 console.log('Vous pouvez entrer dans la school');
+                sessionStorage.removeItem('comeFrom');
+                sessionStorage.setItem('comeFrom', 'outside');
+                setTimeout(() => {
+                    location.href = location.pathname + 'school';
+                }, 100);
             } else if (scrollOffSet + player.position.x >= 4910 && scrollOffSet + player.position.x <= 4970) {
                 console.log('Vous pouvez me contacter');
                 sessionStorage.removeItem('textHowToContactMeDisappearedOnce')
@@ -970,6 +988,7 @@ addEventListener('keydown', ({ code }) => {
             sessionStorage.comeFrom === 'library'
             || sessionStorage.comeFrom === 'cityHall'
             || sessionStorage.comeFrom === 'museum'
+            || sessionStorage.comeFrom === 'school'
         ) {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
@@ -1012,6 +1031,7 @@ addEventListener('keydown', ({ code }) => {
             sessionStorage.comeFrom === 'library'
             || sessionStorage.comeFrom === 'cityHall'
             || sessionStorage.comeFrom === 'museum'
+            || sessionStorage.comeFrom === 'school'
         ) {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
@@ -1140,7 +1160,18 @@ addEventListener('keydown', ({ code }) => {
                 }, 1000);
             }
         }
-        
+        break;
+    case 'Escape':
+        if (phoneOut === true) {
+            document.querySelector('.phone-navbar').classList.add('hidden');
+            phoneOut = false;
+            if (lastKey === 'ArrowRight') {
+                player.currentSprite = player.sprites.stand.right;  
+            } else {
+                player.currentSprite = player.sprites.stand.left;  
+            };
+        };
+        break;
     };
 });
 

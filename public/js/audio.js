@@ -74,6 +74,13 @@ const audio = {
         volume: 0.5,
         loop: false,
         mute: false
+    }),
+    stairs: new Howl({
+        src: './audio/stairs.mp3',
+        html5: true,
+        volume: 1,
+        loop: false,
+        mute: false
     })
 }
 
@@ -93,6 +100,7 @@ function turnSoundOn() {
     audio.teleport.mute(false);
     audio.elevatorMusic.mute(false);
     audio.elevatorDing.mute(false);
+    audio.stairs.mute(false);
     sessionStorage.removeItem('soundOn');
     sessionStorage.setItem('soundOn', true);
 };
@@ -111,6 +119,7 @@ function turnSoundOff() {
     audio.teleport.mute(true);
     audio.elevatorMusic.mute(true);
     audio.elevatorDing.mute(true);
+    audio.stairs.mute(true);
     sessionStorage.removeItem('soundOn');
     sessionStorage.setItem('soundOn', false);
 };

@@ -82,6 +82,12 @@ ul {
     right: 170px;
 }
 
+.skills-content .close-button {
+    top: 520px;
+    right: 30px;
+    color: white;
+}
+
 .resume-content {
     display: flex;
     position: absolute;
@@ -132,4 +138,24 @@ ul {
     top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.skills-content_skill {
+    font-family: 'Indie Flower', cursive;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-80%, -50%);
+}
+
+.skills-content_skill ul {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 250px;
+}
+
+.skills-content_skill ul li {
+    margin: 0 2em;
 }

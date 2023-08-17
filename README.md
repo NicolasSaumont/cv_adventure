@@ -142,7 +142,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
   - [x] Library
   - [x] City Hall
   - [x] Museum
-  - [ ] School
+  - [x] School
   - [x] Harbour
   - [ ] Airport
   - [ ] Forest
@@ -150,7 +150,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [ ] Resume Content
   - [x] Visualize Experiences
   - [x] Visualize Diplomas
-  - [ ] Visualize Skills
+  - [x] Visualize Skills
   - [ ] Visualize Portfolio
   - [x] Visualize Hobbies
   - [ ] Visualize Contact

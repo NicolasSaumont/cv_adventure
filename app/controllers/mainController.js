@@ -16,6 +16,10 @@ const mainController = {
             res.render('museum.ejs');
     },
 
+    getToSchool(req, res) {
+            res.render('school.ejs');
+    },
+
 
 }
 
