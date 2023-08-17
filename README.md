@@ -153,7 +153,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
   - [x] Visualize Skills
   - [ ] Visualize Portfolio
   - [x] Visualize Hobbies
-  - [ ] Visualize Contact
+  - [x] Visualize Contact
 - [x] Transitions
 - [x] Sprites Creation
   - [x] Standing sprites

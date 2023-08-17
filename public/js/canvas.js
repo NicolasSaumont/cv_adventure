@@ -54,6 +54,33 @@ function wrapText(context, text, x, y, maxWidth, lineHeight) {
 //     }
 // };
 
+class FrontObject {
+    constructor({ x, y, image, name }) {
+        this.position = {
+            x,
+            y
+        };
+        this.image = image;
+        this.name = name;
+        this.width = image.width;
+        this.height = image.height;
+    };
+
+    draw() {
+
+        c.globalAlpha = 0; 
+
+            if (watchPostcard === true) {
+                c.globalAlpha = 1; 
+            };
+
+        c.drawImage(this.image, this.position.x, this.position.y);    
+
+        c.globalAlpha = 1; 
+
+    };
+};
+
 class Player {
 
     constructor() {
@@ -549,6 +576,15 @@ const genericObjects = [
     })
 ];
 
+const frontObjects = [
+    new FrontObject({
+        x: (canvas.width - 1024) / 2,
+        y: 0,
+        image: createImage('/img/postcard.png'),
+        name: 'postcard'
+    })
+];
+
 const keys = {
     right: {
         pressed: false,
@@ -574,10 +610,10 @@ let runningSoundAlreadyOn = false;
 
 let musicReloaded = false;
 
+let watchPostcard = false;
+
 function animate(req, res) {
     requestAnimationFrame(animate);
-
-    console.log (sessionStorage.elevatorAlreadyTaken);
 
     if (sessionStorage.gameStarted === undefined) {
         genericObjects.forEach(genericObject => {
@@ -609,6 +645,10 @@ function animate(req, res) {
         // });
 
         player.update();
+
+        frontObjects.forEach(frontObject => {
+            frontObject.draw() 
+        });
 
         switch (sessionStorage.comeFrom) {
             case 'library':
@@ -857,15 +897,21 @@ addEventListener('keydown', ({ code }) => {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
         }
-        runningSoundTurnedOn = true;
-        keys.left.pressed = true;
-        player.currentSprite = player.sprites.run.left;
-        lastKey = 'ArrowLeft';
-        sessionStorage.removeItem('textHowToMoveDisappearedOnce')
-        sessionStorage.setItem('textHowToMoveDisappearedOnce', true);
-        if (phoneOut === true) {
-            document.querySelector('.phone-navbar').classList.add('hidden');
-            phoneOut = false;
+        if (watchPostcard === false){
+            runningSoundTurnedOn = true;
+            keys.left.pressed = true;
+            player.currentSprite = player.sprites.run.left;
+            lastKey = 'ArrowLeft';
+            sessionStorage.removeItem('textHowToMoveDisappearedOnce')
+            sessionStorage.setItem('textHowToMoveDisappearedOnce', true);
+            if (phoneOut === true) {
+                document.querySelector('.phone-navbar').classList.add('hidden');
+                phoneOut = false;
+            };
+        };
+        if (watchPostcard === true){
+            watchPostcard = false;
+            document.querySelector('.contact-content').classList.add('hidden');
         };
 
         // textHowToGetSnackDisappearedOnce = false;
@@ -888,18 +934,24 @@ addEventListener('keydown', ({ code }) => {
         ) {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
-        }
-        runningSoundTurnedOn = true;
-        keys.right.pressed = true;
-        player.currentSprite = player.sprites.run.right;
-        lastKey = 'ArrowRight';
-        sessionStorage.removeItem('textHowToMoveDisappearedOnce')
-        sessionStorage.setItem('textHowToMoveDisappearedOnce', true);
-        if (phoneOut === true) {
-            document.querySelector('.phone-navbar').classList.add('hidden');
-            phoneOut = false;
         };
-        
+        if (watchPostcard === false){
+            runningSoundTurnedOn = true;
+            keys.right.pressed = true;
+            player.currentSprite = player.sprites.run.right;
+            lastKey = 'ArrowRight';
+            sessionStorage.removeItem('textHowToMoveDisappearedOnce')
+            sessionStorage.setItem('textHowToMoveDisappearedOnce', true);
+            if (phoneOut === true) {
+                document.querySelector('.phone-navbar').classList.add('hidden');
+                phoneOut = false;
+            };
+        };
+        if (watchPostcard === true){
+            watchPostcard = false;
+            document.querySelector('.contact-content').classList.add('hidden');
+        };
+
         // textHowToGetSnackDisappearedOnce = false;
         // quoteSnackAppeared = false;
 
@@ -922,8 +974,9 @@ addEventListener('keydown', ({ code }) => {
         if (phoneOut === false) {
             // 1320 correspond au scrollOffSet de l'endroit où on veut activer l'event + la position max du player (300)
             // 1420 correspond au scrollOffSet de l'endroit où on veut désactiver l'event + la position max du player (300)
-            if (scrollOffSet + player.position.x >= 1060 && scrollOffSet + player.position.x <= 1280) {
-                console.log('Vous pouvez me contacter');
+            if (scrollOffSet + player.position.x >= 1060 && scrollOffSet + player.position.x <= 1280 && watchPostcard === false) {
+                watchPostcard = true;
+                document.querySelector('.contact-content').classList.remove('hidden');
                 sessionStorage.removeItem('textHowToContactMeDisappearedOnce')
                 sessionStorage.setItem('textHowToContactMeDisappearedOnce', true);
             } else if (scrollOffSet + player.position.x >= 1320 && scrollOffSet + player.position.x <= 1420) {
@@ -959,8 +1012,9 @@ addEventListener('keydown', ({ code }) => {
                 setTimeout(() => {
                     location.href = location.pathname + 'school';
                 }, 100);
-            } else if (scrollOffSet + player.position.x >= 4910 && scrollOffSet + player.position.x <= 4970) {
-                console.log('Vous pouvez me contacter');
+            } else if (scrollOffSet + player.position.x >= 4910 && scrollOffSet + player.position.x <= 4970 && watchPostcard === false) {
+                watchPostcard = true;
+                document.querySelector('.contact-content').classList.remove('hidden');
                 sessionStorage.removeItem('textHowToContactMeDisappearedOnce')
                 sessionStorage.setItem('textHowToContactMeDisappearedOnce', true);
             };
@@ -1010,7 +1064,11 @@ addEventListener('keydown', ({ code }) => {
                 document.querySelector('.phone-navbar').classList.add('hidden');
                 phoneOut = false;
             };
-        }
+            if (watchPostcard === true){
+                watchPostcard = false;
+                document.querySelector('.contact-content').classList.add('hidden');
+            };
+        };
         break;
     case 'Enter':
         if (sessionStorage.gameStarted === undefined) {
@@ -1049,11 +1107,14 @@ addEventListener('keydown', ({ code }) => {
                 } else {
                     player.currentSprite = player.sprites.watchPhone.right;
                 };
-
                 if (scrollOffSet + player.position.x >= 2300 && scrollOffSet + player.position.x <= 2600) {
                     sessionStorage.removeItem('textWhenToTakePhoneDisappearedOnce')
                     sessionStorage.setItem('textWhenToTakePhoneDisappearedOnce', true);
                 }; 
+                if (watchPostcard === true){
+                    watchPostcard = false;
+                    document.querySelector('.contact-content').classList.add('hidden');
+                };
             } else {
                 if (player.currentSprite === player.sprites.watchPhone.left) {
                     player.currentSprite = player.sprites.teleport.left;
@@ -1156,10 +1217,9 @@ addEventListener('keydown', ({ code }) => {
                     menuIndex = 1;
                     document.querySelector(`.menu-item:nth-child(${menuIndex})`).classList.add('activated');
                     player.currentSprite = player.sprites.stand.right;
-                    
                 }, 1000);
-            }
-        }
+            };
+        };
         break;
     case 'Escape':
         if (phoneOut === true) {
@@ -1170,6 +1230,10 @@ addEventListener('keydown', ({ code }) => {
             } else {
                 player.currentSprite = player.sprites.stand.left;  
             };
+        };
+        if (watchPostcard === true){
+            watchPostcard = false;
+            document.querySelector('.contact-content').classList.add('hidden');
         };
         break;
     };
@@ -1199,7 +1263,7 @@ addEventListener('keyup', ({ code }) => {
     spacePressed = false;
 });
 
-// document.querySelector('.sound-control').addEventListener('click', (event) => {
-//     audio.home.stop();
-//     audio.home.play();
-// });
+document.querySelector('.close-button').addEventListener('click', (event) => {
+    watchPostcard = false;
+    document.querySelector('.contact-content').classList.add('hidden');
+});
