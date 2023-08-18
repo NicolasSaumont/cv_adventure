@@ -1362,11 +1362,27 @@ addEventListener('keydown', ({ code }) => {
             }  else if (phoneOut === false && watchPortfolio === true){
                 sessionStorage.removeItem('comeFrom');
                 sessionStorage.setItem('comeFrom', 'outside');
+                // document.querySelector('.blackbox').style.opacity="1";
                 setTimeout(() => {
-                    // setTimeout(() => {
-                    //    location.href = location.pathname + 'to-memory-game'; 
-                    // }, 1000);
-                    location.href = location.pathname + 'to-memory-game';
+                    switch (menuPortfolio) {
+                        case 1:
+                            // location.href = location.pathname + 'to-memory-game';
+                            break;
+                        case 2:
+                            location.href = location.pathname + 'to-memory-game';
+                            break;
+                        case 3:
+                            // location.href = location.pathname + 'to-memory-game';
+                            break;
+                        case 4:
+                            // location.href = location.pathname + 'to-memory-game';
+                            break;
+                        case 5:
+                            // location.href = location.pathname + 'to-memory-game';
+                            break;
+                        default:
+                            break;
+                    }
                 }, 100);
             };
         };

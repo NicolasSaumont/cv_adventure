@@ -199,6 +199,8 @@ let runningSoundAlreadyOn = false;
 
 let musicReloaded = false;
 
+sessionStorage.setItem('exit', true);
+
 function runToTheRight() {
     runningSoundTurnedOn = true;
     keys.right.pressed = true;
@@ -293,11 +295,7 @@ function animate() {
 
     // Exit
     if (player.position.x >= 1059) {
-        // document.querySelector('.blackbox').style.opacity="1";
-        sessionStorage.removeItem('comeFrom');
-        sessionStorage.setItem('comeFrom', 'portfolio');
         document.querySelector('.continue').classList.remove('hidden');
-        sessionStorage.setItem('exit', true);
     }
 };
 
@@ -399,6 +397,9 @@ addEventListener('keyup', ({ code }) => {
 
 addEventListener('keydown', ({ code }) => {
     if (code === 'Enter') {
+        document.querySelector('.blackbox').style.opacity="1";
+        sessionStorage.removeItem('comeFrom');
+        sessionStorage.setItem('comeFrom', 'portfolio');
         window.open('https://memory.nicolassaumont.com/');
         setTimeout(() => {
             sessionStorage.removeItem('exit', false);
