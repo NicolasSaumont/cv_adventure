@@ -364,6 +364,25 @@ class DialogBubble {
             };   
         };
 
+        if (this.name === 'upPortfolio'){
+            c.globalAlpha = 0;
+            if (
+                scrollOffSet + player.position.x >= 5040 
+                && scrollOffSet + player.position.x <= 5140 
+                && sessionStorage.textHowToAccessPortfolioDisappearedOnce === undefined
+            ){
+                c.globalAlpha = 1; 
+            };
+
+            if (
+                scrollOffSet + player.position.x < 5040 
+                && scrollOffSet + player.position.x > 5140 
+                || sessionStorage.textHowToAccessPortfolioDisappearedOnce === 'true'
+            ){
+                c.globalAlpha = 0; 
+            };   
+        };
+
         // if (this.name === 'snackQuote'){
         //     c.globalAlpha = 0;
         //     if (
@@ -503,6 +522,11 @@ const dialogBubbles = [
         image: createImage('/img/dialogBubble.png'), 
         name: `upContact`,
         text: `Press 'Up' to contact me`,
+    }),
+    new DialogBubble({
+        image: createImage('/img/dialogBubble.png'), 
+        name: `upPortfolio`,
+        text: `Press 'Up' to see my portfolio`,
     })
 ];
 
@@ -612,8 +636,12 @@ let musicReloaded = false;
 
 let watchPostcard = false;
 
+let watchPortfolio = false;
+
 function animate(req, res) {
     requestAnimationFrame(animate);
+
+    console.log(scrollOffSet + player.position.x);
 
     if (sessionStorage.gameStarted === undefined) {
         genericObjects.forEach(genericObject => {
@@ -972,14 +1000,16 @@ addEventListener('keydown', ({ code }) => {
         break;
     case 'ArrowUp':
         if (phoneOut === false) {
-            // 1320 correspond au scrollOffSet de l'endroit où on veut activer l'event + la position max du player (300)
-            // 1420 correspond au scrollOffSet de l'endroit où on veut désactiver l'event + la position max du player (300)
+            // 1060 correspond au scrollOffSet de l'endroit où on veut activer l'event + la position max du player (300)
+            // 1280 correspond au scrollOffSet de l'endroit où on veut désactiver l'event + la position max du player (300)
             if (scrollOffSet + player.position.x >= 1060 && scrollOffSet + player.position.x <= 1280 && watchPostcard === false) {
+                // Première boite aux lettres - Contact
                 watchPostcard = true;
                 document.querySelector('.contact-content').classList.remove('hidden');
                 sessionStorage.removeItem('textHowToContactMeDisappearedOnce')
                 sessionStorage.setItem('textHowToContactMeDisappearedOnce', true);
             } else if (scrollOffSet + player.position.x >= 1320 && scrollOffSet + player.position.x <= 1420) {
+                // Library - Expériences
                 document.querySelector('.blackbox').style.opacity="1";
                 sessionStorage.removeItem('textHowToGoInsideDisappearedOnce')
                 sessionStorage.setItem('textHowToGoInsideDisappearedOnce', true);
@@ -989,23 +1019,27 @@ addEventListener('keydown', ({ code }) => {
                     location.href = location.pathname + 'library';
                 }, 100);
             } else if (scrollOffSet + player.position.x >= 1940 && scrollOffSet + player.position.x <= 2060) {
+                // City Hall - Diplomes
                 sessionStorage.removeItem('comeFrom');
                 sessionStorage.setItem('comeFrom', 'outside');
                 setTimeout(() => {
                     location.href = location.pathname + 'cityHall';
                 }, 100);
             } else if (scrollOffSet + player.position.x >= 2965 && scrollOffSet + player.position.x <= 3060) {
+                // Snack - Citations
                 console.log('Appuyer sur "up" pour avoir un snack');
                 // quoteSnackAppeared = false;
                 // textHowToGetSnackDisappearedOnce = true;
                 // quoteSnackAppeared = true;
             } else if (scrollOffSet + player.position.x >= 3440 && scrollOffSet + player.position.x <= 3530) {
+                // Museum - Hobbies
                 sessionStorage.removeItem('comeFrom');
                 sessionStorage.setItem('comeFrom', 'outside');
                 setTimeout(() => {
                     location.href = location.pathname + 'museum';
                 }, 100);
             } else if (scrollOffSet + player.position.x >= 4420 && scrollOffSet + player.position.x <= 4510) {
+                // School - Skills
                 console.log('Vous pouvez entrer dans la school');
                 sessionStorage.removeItem('comeFrom');
                 sessionStorage.setItem('comeFrom', 'outside');
@@ -1013,10 +1047,17 @@ addEventListener('keydown', ({ code }) => {
                     location.href = location.pathname + 'school';
                 }, 100);
             } else if (scrollOffSet + player.position.x >= 4910 && scrollOffSet + player.position.x <= 4970 && watchPostcard === false) {
+                // 2e boite aux lettres - Contact
                 watchPostcard = true;
                 document.querySelector('.contact-content').classList.remove('hidden');
                 sessionStorage.removeItem('textHowToContactMeDisappearedOnce')
                 sessionStorage.setItem('textHowToContactMeDisappearedOnce', true);
+            } else if (scrollOffSet + player.position.x >= 5040 && scrollOffSet + player.position.x <= 5140 && watchPortfolio === false) {
+                // Portfolio
+                watchPortfolio = true;
+                document.querySelector('.portfolio-content').classList.remove('hidden');
+                sessionStorage.removeItem('textHowToAccessPortfolioDisappearedOnce')
+                sessionStorage.setItem('textHowToAccessPortfolioDisappearedOnce', true);
             };
         } else if (phoneOut === true) {
             if (menuIndex > 1) {

@@ -147,6 +147,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
   - [ ] Airport
   - [ ] Forest
   - [ ] Arcade Game Center
+  - [ ] District Center
 - [ ] Resume Content
   - [x] Visualize Experiences
   - [x] Visualize Diplomas
