@@ -16,4 +16,6 @@ router.get('/school', mainController.getToSchool);
 
 router.get('/to-memory-game', mainController.getToMemoryGame);
 
+router.get('/to-mystical-forest', mainController.getToMysticalForest);
+
 module.exports = router;

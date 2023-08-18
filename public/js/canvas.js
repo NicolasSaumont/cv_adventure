@@ -1373,8 +1373,8 @@ addEventListener('keydown', ({ code }) => {
                             location.href = location.pathname + 'to-memory-game';
                             break;
                         case 3:
-                            // location.href = location.pathname + 'to-mystical-forest';
-                            window.open('https://mysticalforest.nicolassaumont.com/');
+                            location.href = location.pathname + 'to-mystical-forest';
+                            // window.open('https://mysticalforest.nicolassaumont.com/');
                             break;
                         case 4:
                             // location.href = location.pathname + 'to-top-5-video-games';

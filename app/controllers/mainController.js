@@ -22,6 +22,10 @@ const mainController = {
 
     getToMemoryGame(req, res) {
             res.render('harbor.ejs');
+    },
+
+    getToMysticalForest(req, res) {
+            res.render('forest.ejs');
     }
 
 }
