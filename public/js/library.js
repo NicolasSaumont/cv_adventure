@@ -557,7 +557,7 @@ addEventListener('keyup', ({ code }) => {
     spacePressed = false;
 });
 
-document.querySelector('.close-button').addEventListener('click', (event) => {
+document.querySelector('.close-button--experiences').addEventListener('click', (event) => {
     bookOpen = false;
     document.querySelector(`.resume-content--page_${indexBookPage}`).classList.add('hidden');
 });

@@ -16,6 +16,11 @@ ul {
     padding: 0;
 }
 
+a {
+    color: #131a0d;
+    text-decoration: none;
+}
+
 .container {
     width: 1024px;
     height: 576px;
@@ -67,29 +72,37 @@ ul {
     position: absolute;
     width: 30px;
     height: 30px;
-    top: -40px;
-    right: 10px;
     cursor: pointer;
 }
 
-.diplomas-content .close-button {
+.close-button--experiences {
+    top: -40px;
+    right: 10px;
+}
+
+.close-button--diplomas {
     top: 520px;
     right: 30px;
 }
 
-.hobbies-content .close-button {
+.close-button--hobbies {
     top: 30px;
     right: 170px;
 }
 
-.skills-content .close-button {
+.close-button--skills{
     top: 520px;
     right: 30px;
 }
 
-.contact-content .close-button {
+.close-button--contact {
     top: 30px;
     right: -50px;
+}
+
+.close-button--portfolio {
+    top: 30px;
+    right: 230px;
 }
 
 .resume-content {
@@ -172,7 +185,40 @@ ul {
     transform: translate(-50%, -60%);
 }
 
-a {
-    color: #131a0d;
-    text-decoration: none;
+.portfolio-selector {
+    position: absolute;
+    cursor: pointer;
+}
+
+.portfolio-selector:nth-child(1) {
+    top: 30px;
+    left: 220px
+}
+
+.portfolio-selector:nth-child(2)  {
+    top: 20px;
+    right: 230px
+}
+
+.portfolio-selector:nth-child(3)  {
+    top: 120px;
+    left: 450px
+}
+
+.portfolio-selector:nth-child(4)  {
+    top: 240px;
+    left: 300px
+}
+
+.portfolio-selector:nth-child(5)  {
+    top: 230px;
+    right: 245px
+}
+
+.portfolio-list_item {
+    font-family: 'Dancing Script', cursive;
+    position: absolute;
+    top: 82%;
+    left: 50%;
+    transform: translate(-50%, -60%);
 }

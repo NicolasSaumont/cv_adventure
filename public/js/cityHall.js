@@ -534,7 +534,7 @@ addEventListener('keyup', ({ code }) => {
     spacePressed = false;
 });
 
-document.querySelector('.close-button').addEventListener('click', (event) => {
+document.querySelector('.close-button--diplomas').addEventListener('click', (event) => {
     watchDiplomas = false;
     document.querySelector('.diplomas-content').classList.add('hidden');
 });

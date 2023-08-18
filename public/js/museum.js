@@ -775,12 +775,12 @@ addEventListener('keyup', ({ code }) => {
     spacePressed = false;
 });
 
-document.querySelector('.close-button').addEventListener('click', (event) => {
+document.querySelector('.close-button--hobbies').addEventListener('click', (event) => {
     watchHobbies = false;
     const elementsToHide = document.querySelectorAll('.hobbies-content_hobby');
     elementsToHide.forEach(elementToHide => {
         elementToHide.classList.remove('hidden');
         elementToHide.classList.add('hidden');
     });
-    document.querySelector('.close-button').classList.add('hidden');
+    document.querySelector('.close-button--hobbies').classList.add('hidden');
 });

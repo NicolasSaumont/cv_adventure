@@ -18,8 +18,7 @@ const mainController = {
 
     getToSchool(req, res) {
             res.render('school.ejs');
-    },
-
+    }
 
 }
 

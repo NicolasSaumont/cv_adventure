@@ -143,16 +143,16 @@ _For more examples, please refer to the [Documentation](https://example.com)_
   - [x] City Hall
   - [x] Museum
   - [x] School
-  - [x] Harbour
+  - [x] Harbor
   - [ ] Airport
   - [ ] Forest
   - [ ] Arcade Game Center
   - [ ] District Center
-- [ ] Resume Content
+- [x] Resume Content
   - [x] Visualize Experiences
   - [x] Visualize Diplomas
   - [x] Visualize Skills
-  - [ ] Visualize Portfolio
+  - [x] Visualize Portfolio
   - [x] Visualize Hobbies
   - [x] Visualize Contact
 - [x] Transitions
@@ -166,6 +166,11 @@ _For more examples, please refer to the [Documentation](https://example.com)_
   - [x] Sounds
   - [x] Controls
 - [ ] Cinematics
+  - [ ] Harbor
+  - [ ] Airport
+  - [ ] Forest
+  - [ ] Arcade Game Center
+  - [ ] District Center
 - [ ] Snacks
 - [ ] Responsive
 - [ ] Fine tuning

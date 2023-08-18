@@ -70,9 +70,17 @@ class FrontObject {
 
         c.globalAlpha = 0; 
 
+        if (this.name === 'postcard'){
             if (watchPostcard === true) {
                 c.globalAlpha = 1; 
             };
+        };
+
+        if (this.name === 'portfolio'){
+            if (watchPortfolio === true) {
+                c.globalAlpha = 1; 
+            };
+        };
 
         c.drawImage(this.image, this.position.x, this.position.y);    
 
@@ -606,6 +614,12 @@ const frontObjects = [
         y: 0,
         image: createImage('/img/postcard.png'),
         name: 'postcard'
+    }),
+    new FrontObject({
+        x: (canvas.width - 1024) / 2,
+        y: 0,
+        image: createImage('/img/portfolioMap.png'),
+        name: 'portfolio'
     })
 ];
 
@@ -628,6 +642,8 @@ let spacePressed = false;
 
 let menuIndex = 1;
 
+let menuPortfolio = 1;
+
 let runningSoundTurnedOn = false;
 
 let runningSoundAlreadyOn = false;
@@ -640,8 +656,6 @@ let watchPortfolio = false;
 
 function animate(req, res) {
     requestAnimationFrame(animate);
-
-    console.log(scrollOffSet + player.position.x);
 
     if (sessionStorage.gameStarted === undefined) {
         genericObjects.forEach(genericObject => {
@@ -900,6 +914,9 @@ function animate(req, res) {
 
 document.querySelector(`.menu-item:nth-child(${menuIndex})`).classList.add('activated');
 
+document.querySelector(`.portfolio-selector:nth-child(${menuIndex})`).classList.remove('hidden');
+document.querySelector(`.portfolio-list_item:nth-child(${menuIndex})`).classList.remove('hidden');
+
 audio.home.play();  
 
 document.querySelector('.blackbox').style.opacity="0";
@@ -925,7 +942,7 @@ addEventListener('keydown', ({ code }) => {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
         }
-        if (watchPostcard === false){
+        if (watchPostcard === false && watchPortfolio === false){
             runningSoundTurnedOn = true;
             keys.left.pressed = true;
             player.currentSprite = player.sprites.run.left;
@@ -940,6 +957,22 @@ addEventListener('keydown', ({ code }) => {
         if (watchPostcard === true){
             watchPostcard = false;
             document.querySelector('.contact-content').classList.add('hidden');
+        };
+        if (watchPortfolio === true) {
+            if (menuPortfolio > 1) {
+                document.querySelector(`.portfolio-list_item:nth-child(${menuPortfolio})`).classList.add('hidden');
+                document.querySelector(`.portfolio-selector:nth-child(${menuPortfolio})`).classList.add('hidden');
+                menuPortfolio--;
+                document.querySelector(`.portfolio-list_item:nth-child(${menuPortfolio})`).classList.remove('hidden');
+                document.querySelector(`.portfolio-selector:nth-child(${menuPortfolio})`).classList.remove('hidden');
+                
+            } else {
+                document.querySelector(`.portfolio-list_item:nth-child(${menuPortfolio})`).classList.add('hidden');
+                document.querySelector(`.portfolio-selector:nth-child(${menuPortfolio})`).classList.add('hidden');
+                menuPortfolio = 5;
+                document.querySelector(`.portfolio-list_item:nth-child(${menuPortfolio})`).classList.remove('hidden');
+                document.querySelector(`.portfolio-selector:nth-child(${menuPortfolio})`).classList.remove('hidden');
+            };
         };
 
         // textHowToGetSnackDisappearedOnce = false;
@@ -963,7 +996,7 @@ addEventListener('keydown', ({ code }) => {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
         };
-        if (watchPostcard === false){
+        if (watchPostcard === false && watchPortfolio === false){
             runningSoundTurnedOn = true;
             keys.right.pressed = true;
             player.currentSprite = player.sprites.run.right;
@@ -978,6 +1011,22 @@ addEventListener('keydown', ({ code }) => {
         if (watchPostcard === true){
             watchPostcard = false;
             document.querySelector('.contact-content').classList.add('hidden');
+        };
+        if (watchPortfolio === true) {
+            if (menuPortfolio < 5) {
+                document.querySelector(`.portfolio-list_item:nth-child(${menuPortfolio})`).classList.add('hidden');
+                document.querySelector(`.portfolio-selector:nth-child(${menuPortfolio})`).classList.add('hidden');
+                menuPortfolio++;
+                document.querySelector(`.portfolio-list_item:nth-child(${menuPortfolio})`).classList.remove('hidden');
+                document.querySelector(`.portfolio-selector:nth-child(${menuPortfolio})`).classList.remove('hidden');
+                
+            } else {
+                document.querySelector(`.portfolio-list_item:nth-child(${menuPortfolio})`).classList.add('hidden');
+                document.querySelector(`.portfolio-selector:nth-child(${menuPortfolio})`).classList.add('hidden');
+                menuPortfolio = 1;
+                document.querySelector(`.portfolio-list_item:nth-child(${menuPortfolio})`).classList.remove('hidden');
+                document.querySelector(`.portfolio-selector:nth-child(${menuPortfolio})`).classList.remove('hidden');
+            };
         };
 
         // textHowToGetSnackDisappearedOnce = false;
@@ -996,10 +1045,26 @@ addEventListener('keydown', ({ code }) => {
                 menuIndex = 1;
                 document.querySelector(`.menu-item:nth-child(${menuIndex})`).classList.add('activated');
             };
-        }
+        };
+        if (watchPortfolio === true) {
+            if (menuPortfolio < 5) {
+                document.querySelector(`.portfolio-list_item:nth-child(${menuPortfolio})`).classList.add('hidden');
+                document.querySelector(`.portfolio-selector:nth-child(${menuPortfolio})`).classList.add('hidden');
+                menuPortfolio++;
+                document.querySelector(`.portfolio-list_item:nth-child(${menuPortfolio})`).classList.remove('hidden');
+                document.querySelector(`.portfolio-selector:nth-child(${menuPortfolio})`).classList.remove('hidden');
+                
+            } else {
+                document.querySelector(`.portfolio-list_item:nth-child(${menuPortfolio})`).classList.add('hidden');
+                document.querySelector(`.portfolio-selector:nth-child(${menuPortfolio})`).classList.add('hidden');
+                menuPortfolio = 1;
+                document.querySelector(`.portfolio-list_item:nth-child(${menuPortfolio})`).classList.remove('hidden');
+                document.querySelector(`.portfolio-selector:nth-child(${menuPortfolio})`).classList.remove('hidden');
+            };
+        };
         break;
     case 'ArrowUp':
-        if (phoneOut === false) {
+        if (phoneOut === false && watchPortfolio === false) {
             // 1060 correspond au scrollOffSet de l'endroit où on veut activer l'event + la position max du player (300)
             // 1280 correspond au scrollOffSet de l'endroit où on veut désactiver l'event + la position max du player (300)
             if (scrollOffSet + player.position.x >= 1060 && scrollOffSet + player.position.x <= 1280 && watchPostcard === false) {
@@ -1040,7 +1105,6 @@ addEventListener('keydown', ({ code }) => {
                 }, 100);
             } else if (scrollOffSet + player.position.x >= 4420 && scrollOffSet + player.position.x <= 4510) {
                 // School - Skills
-                console.log('Vous pouvez entrer dans la school');
                 sessionStorage.removeItem('comeFrom');
                 sessionStorage.setItem('comeFrom', 'outside');
                 setTimeout(() => {
@@ -1068,6 +1132,21 @@ addEventListener('keydown', ({ code }) => {
                 document.querySelector(`.menu-item:nth-child(${menuIndex})`).classList.remove('activated');
                 menuIndex = 6;
                 document.querySelector(`.menu-item:nth-child(${menuIndex})`).classList.add('activated');
+            };
+        } else if (watchPortfolio === true) {
+            if (menuPortfolio > 1) {
+                document.querySelector(`.portfolio-list_item:nth-child(${menuPortfolio})`).classList.add('hidden');
+                document.querySelector(`.portfolio-selector:nth-child(${menuPortfolio})`).classList.add('hidden');
+                menuPortfolio--;
+                document.querySelector(`.portfolio-list_item:nth-child(${menuPortfolio})`).classList.remove('hidden');
+                document.querySelector(`.portfolio-selector:nth-child(${menuPortfolio})`).classList.remove('hidden');
+                
+            } else {
+                document.querySelector(`.portfolio-list_item:nth-child(${menuPortfolio})`).classList.add('hidden');
+                document.querySelector(`.portfolio-selector:nth-child(${menuPortfolio})`).classList.add('hidden');
+                menuPortfolio = 5;
+                document.querySelector(`.portfolio-list_item:nth-child(${menuPortfolio})`).classList.remove('hidden');
+                document.querySelector(`.portfolio-selector:nth-child(${menuPortfolio})`).classList.remove('hidden');
             };
         };
         break;
@@ -1109,6 +1188,11 @@ addEventListener('keydown', ({ code }) => {
                 watchPostcard = false;
                 document.querySelector('.contact-content').classList.add('hidden');
             };
+            if (watchPortfolio === true){
+                watchPortfolio = false;
+                document.querySelector('.portfolio-content').classList.add('hidden');
+                document.querySelector('.close-button--contact').classList.add('hidden');
+            };
         };
         break;
     case 'Enter':
@@ -1136,7 +1220,7 @@ addEventListener('keydown', ({ code }) => {
             musicReloaded = true;
             
         }
-            if (phoneOut === false){
+            if (phoneOut === false && watchPortfolio === false){
                 sessionStorage.removeItem('textHowToMoveDisappearedOnce')
                 sessionStorage.setItem('textHowToMoveDisappearedOnce', true);
                 sessionStorage.removeItem('textHowToTakePhoneDisappearedOnce')
@@ -1156,7 +1240,7 @@ addEventListener('keydown', ({ code }) => {
                     watchPostcard = false;
                     document.querySelector('.contact-content').classList.add('hidden');
                 };
-            } else {
+            } else if (phoneOut === true && watchPortfolio === false){
                 if (player.currentSprite === player.sprites.watchPhone.left) {
                     player.currentSprite = player.sprites.teleport.left;
                 } else {
@@ -1276,6 +1360,10 @@ addEventListener('keydown', ({ code }) => {
             watchPostcard = false;
             document.querySelector('.contact-content').classList.add('hidden');
         };
+        if (watchPortfolio === true){
+            watchPortfolio = false;
+            document.querySelector('.portfolio-content').classList.add('hidden');
+        };
         break;
     };
 });
@@ -1304,7 +1392,15 @@ addEventListener('keyup', ({ code }) => {
     spacePressed = false;
 });
 
-document.querySelector('.close-button').addEventListener('click', (event) => {
-    watchPostcard = false;
-    document.querySelector('.contact-content').classList.add('hidden');
+document.querySelector('.close-button--contact').addEventListener('click', (event) => {
+    if (watchPostcard === true) {
+        watchPostcard = false;
+        document.querySelector('.contact-content').classList.add('hidden');
+    };
+});
+document.querySelector('.close-button--portfolio').addEventListener('click', (event) => {
+    if (watchPortfolio === true){
+        watchPortfolio = false;
+        document.querySelector('.portfolio-content').classList.add('hidden');
+    };
 });

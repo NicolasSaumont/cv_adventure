@@ -674,12 +674,12 @@ addEventListener('keyup', ({ code }) => {
     spacePressed = false;
 });
 
-document.querySelector('.close-button').addEventListener('click', (event) => {
+document.querySelector('.close-button--skills').addEventListener('click', (event) => {
     watchSkills = false;
     const elementsToHide = document.querySelectorAll('.skills-content_skill');
     elementsToHide.forEach(elementToHide => {
         elementToHide.classList.remove('hidden');
         elementToHide.classList.add('hidden');
     });
-    document.querySelector('.close-button').classList.add('hidden');
+    document.querySelector('.close-button--skills').classList.add('hidden');
 });
