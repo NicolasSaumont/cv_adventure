@@ -139,3 +139,9 @@ soundController.addEventListener('click', (event) => {
         turnSoundOn();
     }  
 });
+
+addEventListener('keydown', ({ code }) => {
+    if (code === 'Enter' && sessionStorage.exit === 'true' && sessionStorage.soundOn === 'true') {
+        turnSoundOff();
+    }
+});

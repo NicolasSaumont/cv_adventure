@@ -18,6 +18,10 @@ const mainController = {
 
     getToSchool(req, res) {
             res.render('school.ejs');
+    },
+
+    getToMemoryGame(req, res) {
+            res.render('harbor.ejs');
     }
 
 }

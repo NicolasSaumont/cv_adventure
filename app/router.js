@@ -14,4 +14,6 @@ router.get('/museum', mainController.getToMuseum);
 
 router.get('/school', mainController.getToSchool);
 
+router.get('/to-memory-game', mainController.getToMemoryGame);
+
 module.exports = router;

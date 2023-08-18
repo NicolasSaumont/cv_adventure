@@ -741,6 +741,18 @@ function animate(req, res) {
                 platforms[0].position.x = -4164;
                 obstacles[0].position.x = -4164 + 985;
                 break;
+            case 'portfolio':
+                scrollOffSet = 4272;
+                player.position.x = 820;
+                player.position.y = 481,4;
+                genericObjects[0].position.x = -21,36;
+                genericObjects[1].position.x = -427,2;
+                genericObjects[2].position.x = -854,4;
+                genericObjects[3].position.x = -4272;
+                genericObjects[4].position.x = -4272 + 100;
+                platforms[0].position.x = -4272;
+                obstacles[0].position.x = -4272 + 985;
+                break;
             default:
                 break;
         }
@@ -938,6 +950,7 @@ addEventListener('keydown', ({ code }) => {
             || sessionStorage.comeFrom === 'cityHall'
             || sessionStorage.comeFrom === 'museum'
             || sessionStorage.comeFrom === 'school'
+            || sessionStorage.comeFrom === 'portfolio'
         ) {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
@@ -992,6 +1005,7 @@ addEventListener('keydown', ({ code }) => {
             || sessionStorage.comeFrom === 'cityHall'
             || sessionStorage.comeFrom === 'museum'
             || sessionStorage.comeFrom === 'school'
+            || sessionStorage.comeFrom === 'portfolio'
         ) {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
@@ -1163,6 +1177,7 @@ addEventListener('keydown', ({ code }) => {
             || sessionStorage.comeFrom === 'cityHall'
             || sessionStorage.comeFrom === 'museum'
             || sessionStorage.comeFrom === 'school'
+            || sessionStorage.comeFrom === 'portfolio'
         ) {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
@@ -1215,6 +1230,7 @@ addEventListener('keydown', ({ code }) => {
             || sessionStorage.comeFrom === 'cityHall'
             || sessionStorage.comeFrom === 'museum'
             || sessionStorage.comeFrom === 'school'
+            || sessionStorage.comeFrom === 'portfolio'
         ) {
             sessionStorage.removeItem('comeFrom');
             musicReloaded = true;
@@ -1343,6 +1359,15 @@ addEventListener('keydown', ({ code }) => {
                     document.querySelector(`.menu-item:nth-child(${menuIndex})`).classList.add('activated');
                     player.currentSprite = player.sprites.stand.right;
                 }, 1000);
+            }  else if (phoneOut === false && watchPortfolio === true){
+                sessionStorage.removeItem('comeFrom');
+                sessionStorage.setItem('comeFrom', 'outside');
+                setTimeout(() => {
+                    // setTimeout(() => {
+                    //    location.href = location.pathname + 'to-memory-game'; 
+                    // }, 1000);
+                    location.href = location.pathname + 'to-memory-game';
+                }, 100);
             };
         };
         break;
