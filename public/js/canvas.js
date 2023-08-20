@@ -1374,15 +1374,13 @@ addEventListener('keydown', ({ code }) => {
                             break;
                         case 3:
                             location.href = location.pathname + 'to-mystical-forest';
-                            // window.open('https://mysticalforest.nicolassaumont.com/');
                             break;
                         case 4:
                             // location.href = location.pathname + 'to-top-5-video-games';
                             window.open('https://www.games.nicolassaumont.com/');
                             break;
                         case 5:
-                            // location.href = location.pathname + 'to-ezee';
-                            window.open('https://www.accompagnerlesentrepreneurs.com/');
+                            location.href = location.pathname + 'to-ezee';
                             break;
                         default:
                             break;

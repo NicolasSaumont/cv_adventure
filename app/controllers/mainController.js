@@ -26,6 +26,10 @@ const mainController = {
 
     getToMysticalForest(req, res) {
             res.render('forest.ejs');
+    },
+
+    getToEzee(req, res) {
+            res.render('districtCenter.ejs');
     }
 
 }

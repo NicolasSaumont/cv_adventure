@@ -184,7 +184,7 @@ function animate() {
     }
 
     // Exit
-    if (player.position.x >= 1020) {
+    if (player.position.x >= 720) {
         document.querySelector('.continue').classList.remove('hidden');
     }
 };

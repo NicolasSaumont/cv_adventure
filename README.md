@@ -145,9 +145,9 @@ _For more examples, please refer to the [Documentation](https://example.com)_
   - [x] School
   - [x] Harbor
   - [ ] Airport
-  - [ ] Forest
+  - [x] Forest
   - [ ] Arcade Game Center
-  - [ ] District Center
+  - [x] District Center
 - [x] Resume Content
   - [x] Visualize Experiences
   - [x] Visualize Diplomas
@@ -168,9 +168,9 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [ ] Cinematics
   - [x] Harbor
   - [ ] Airport
-  - [ ] Forest
+  - [x] Forest
   - [ ] Arcade Game Center
-  - [ ] District Center
+  - [x] District Center
 - [ ] Snacks
 - [ ] Responsive
 - [ ] Fine tuning

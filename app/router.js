@@ -18,4 +18,7 @@ router.get('/to-memory-game', mainController.getToMemoryGame);
 
 router.get('/to-mystical-forest', mainController.getToMysticalForest);
 
+router.get('/to-ezee', mainController.getToEzee);
+
+
 module.exports = router;
