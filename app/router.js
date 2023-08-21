@@ -20,5 +20,7 @@ router.get('/to-mystical-forest', mainController.getToMysticalForest);
 
 router.get('/to-ezee', mainController.getToEzee);
 
+router.get('/to-top-5-video-games', mainController.getToTopFiveVideoGames);
+
 
 module.exports = router;

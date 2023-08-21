@@ -1376,8 +1376,7 @@ addEventListener('keydown', ({ code }) => {
                             location.href = location.pathname + 'to-mystical-forest';
                             break;
                         case 4:
-                            // location.href = location.pathname + 'to-top-5-video-games';
-                            window.open('https://www.games.nicolassaumont.com/');
+                            location.href = location.pathname + 'to-top-5-video-games';
                             break;
                         case 5:
                             location.href = location.pathname + 'to-ezee';

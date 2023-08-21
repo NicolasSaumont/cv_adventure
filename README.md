@@ -146,7 +146,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
   - [x] Harbor
   - [ ] Airport
   - [x] Forest
-  - [ ] Arcade Game Center
+  - [x] Arcade Game Center
   - [x] District Center
 - [x] Resume Content
   - [x] Visualize Experiences
@@ -169,7 +169,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
   - [x] Harbor
   - [ ] Airport
   - [x] Forest
-  - [ ] Arcade Game Center
+  - [x] Arcade Game Center
   - [x] District Center
 - [ ] Snacks
 - [ ] Responsive

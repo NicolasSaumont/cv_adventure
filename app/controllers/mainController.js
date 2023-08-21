@@ -30,6 +30,10 @@ const mainController = {
 
     getToEzee(req, res) {
             res.render('districtCenter.ejs');
+    },
+
+    getToTopFiveVideoGames(req, res) {
+            res.render('arcadeGameCenter.ejs');
     }
 
 }
