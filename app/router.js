@@ -14,13 +14,16 @@ router.get('/museum', mainController.getToMuseum);
 
 router.get('/school', mainController.getToSchool);
 
+router.get('/to-fran', mainController.getToFran);
+
 router.get('/to-memory-game', mainController.getToMemoryGame);
 
 router.get('/to-mystical-forest', mainController.getToMysticalForest);
 
+router.get('/to-top-5-video-games', mainController.getToTopFiveVideoGames);
+
 router.get('/to-ezee', mainController.getToEzee);
 
-router.get('/to-top-5-video-games', mainController.getToTopFiveVideoGames);
 
 
 module.exports = router;

@@ -137,14 +137,14 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [x] Phone Menu
 - [x] Teleport (quick access)
 - [x] Starting Page
-- [ ] Level Creation
+- [x] Level Creation
   - [x] Home Page
   - [x] Library
   - [x] City Hall
   - [x] Museum
   - [x] School
   - [x] Harbor
-  - [ ] Airport
+  - [x] Airport
   - [x] Forest
   - [x] Arcade Game Center
   - [x] District Center
@@ -165,9 +165,9 @@ _For more examples, please refer to the [Documentation](https://example.com)_
   - [x] Musics
   - [x] Sounds
   - [x] Controls
-- [ ] Cinematics
+- [x] Cinematics
   - [x] Harbor
-  - [ ] Airport
+  - [x] Airport
   - [x] Forest
   - [x] Arcade Game Center
   - [x] District Center

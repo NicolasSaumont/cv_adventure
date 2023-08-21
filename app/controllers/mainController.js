@@ -34,6 +34,10 @@ const mainController = {
 
     getToTopFiveVideoGames(req, res) {
             res.render('arcadeGameCenter.ejs');
+    },
+
+    getToFran(req, res) {
+            res.render('airport.ejs');
     }
 
 }

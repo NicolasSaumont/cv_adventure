@@ -1366,8 +1366,7 @@ addEventListener('keydown', ({ code }) => {
                 setTimeout(() => {
                     switch (menuPortfolio) {
                         case 1:
-                            // location.href = location.pathname + 'to-fran';
-                            window.open('https://www.travel.nicolassaumont.com/');
+                            location.href = location.pathname + 'to-fran';
                             break;
                         case 2:
                             location.href = location.pathname + 'to-memory-game';
