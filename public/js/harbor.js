@@ -281,7 +281,8 @@ addEventListener('keydown', ({ code }) => {
         document.querySelector('.blackbox').style.opacity="1";
         sessionStorage.removeItem('comeFrom');
         sessionStorage.setItem('comeFrom', 'portfolio');
-        window.open('https://memory.nicolassaumont.com/');
+        document.querySelector('.to-memory-game').click();
+        // window.open('https://memory.nicolassaumont.com/');
         setTimeout(() => {
             sessionStorage.removeItem('exit', false);
             location.href = '/'; 
