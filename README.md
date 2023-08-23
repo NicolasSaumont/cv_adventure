@@ -105,19 +105,21 @@ Discover my career path in a playful way thanks to an innovative CV site: a retr
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Go visit https://www.cv-adventure.nicolassaumont.com or click [this link](https://www.cv-adventure.nicolassaumont.com).
+This website is still in production, so it is not available online for now. To access it, you can follow those steps :
+
+### Installing
+
+- Clone or download the project from its GitHub repository.
+- Navigate to the project directory.
+- Run `npm install` to install the necessary node modules.
+
+### Executing program
+
+- Navigate to the project's root directory.
+- Run the application using: `npm start`
+- Open a browser and go to `http://localhost:3000` to access the game.
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
