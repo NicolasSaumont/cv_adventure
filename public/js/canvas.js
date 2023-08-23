@@ -1216,7 +1216,7 @@ addEventListener('keydown', ({ code }) => {
             document.querySelector('.sound-control_icon--on').classList.remove('hidden');
             sessionStorage.setItem("gameStarted", true);
             musicReloaded = true;
-            
+            audio.home.play();
         } else {
             if (
             sessionStorage.gameStarted === 'true' 
