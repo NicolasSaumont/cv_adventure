@@ -1,5 +1,5 @@
 
-<a name="readme-top"></a>
+#### Readme Top 
 <!--
 *** Thanks for checking out the projetc 'Nicolas Saumont's CV Adventure. If you have a suggestion
 *** that would make this better, please fork the repo and create a pull request
@@ -64,11 +64,10 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#execution">Execution</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -107,13 +106,13 @@ Discover my career path in a playful way thanks to an innovative CV site: a retr
 
 This website is still in production, so it is not available online for now. To access it, you can follow those steps :
 
-### Installing
+### Installation
 
 - Clone or download the project from its GitHub repository.
 - Navigate to the project directory.
 - Run `npm install` to install the necessary node modules.
 
-### Executing program
+### Execution
 
 - Navigate to the project's root directory.
 - Run the application using: `npm start`
