@@ -998,6 +998,7 @@ addEventListener('keydown', ({ code }) => {
             && musicReloaded === false 
             && sessionStorage.comeFrom === undefined
         ) {
+            audio.home.play();
             musicReloaded = true;
         }
         if (
@@ -1132,6 +1133,7 @@ addEventListener('keydown', ({ code }) => {
                 sessionStorage.setItem('textHowToContactMeDisappearedOnce', true);
             } else if (scrollOffSet + player.position.x >= 5040 && scrollOffSet + player.position.x <= 5140 && watchPortfolio === false) {
                 // Portfolio
+                sessionStorage.removeItem('comeFrom');
                 watchPortfolio = true;
                 document.querySelector('.portfolio-content').classList.remove('hidden');
                 sessionStorage.removeItem('textHowToAccessPortfolioDisappearedOnce')
@@ -1170,6 +1172,7 @@ addEventListener('keydown', ({ code }) => {
             && musicReloaded === false 
             && sessionStorage.comeFrom === undefined
         ) {
+            audio.home.play();
             musicReloaded = true;
         }
         if (
@@ -1222,20 +1225,19 @@ addEventListener('keydown', ({ code }) => {
             sessionStorage.gameStarted === 'true' 
             && musicReloaded === false 
             && sessionStorage.comeFrom === undefined
-        ) {
-            musicReloaded = true;
-        }
-        if (
-            sessionStorage.comeFrom === 'library'
-            || sessionStorage.comeFrom === 'cityHall'
-            || sessionStorage.comeFrom === 'museum'
-            || sessionStorage.comeFrom === 'school'
-            || sessionStorage.comeFrom === 'portfolio'
-        ) {
-            sessionStorage.removeItem('comeFrom');
-            musicReloaded = true;
-            
-        }
+            ) {
+                musicReloaded = true;
+            }
+            if (
+                sessionStorage.comeFrom === 'library'
+                || sessionStorage.comeFrom === 'cityHall'
+                || sessionStorage.comeFrom === 'museum'
+                || sessionStorage.comeFrom === 'school'
+                || sessionStorage.comeFrom === 'portfolio'
+            ) {
+                sessionStorage.removeItem('comeFrom');
+                musicReloaded = true;
+            }
             if (phoneOut === false && watchPortfolio === false){
                 sessionStorage.removeItem('textHowToMoveDisappearedOnce')
                 sessionStorage.setItem('textHowToMoveDisappearedOnce', true);
