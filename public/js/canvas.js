@@ -998,7 +998,6 @@ addEventListener('keydown', ({ code }) => {
             && musicReloaded === false 
             && sessionStorage.comeFrom === undefined
         ) {
-            audio.home.play();
             musicReloaded = true;
         }
         if (
@@ -1219,7 +1218,12 @@ addEventListener('keydown', ({ code }) => {
             document.querySelector('.sound-control_icon--on').classList.remove('hidden');
             sessionStorage.setItem("gameStarted", true);
             musicReloaded = true;
-            audio.home.play();
+            const permission = navigator.permissions.query( { name: "midi" } ).then((permissionStatus) => {
+                if (permission.state !== 'granted'){
+                    audio.home.play();
+                };
+
+            });
         } else {
             if (
             sessionStorage.gameStarted === 'true' 

@@ -194,7 +194,8 @@ addEventListener('keydown', ({ code }) => {
         document.querySelector('.blackbox').style.opacity="1";
         sessionStorage.removeItem('comeFrom');
         sessionStorage.setItem('comeFrom', 'portfolio');
-        window.open('https://www.accompagnerlesentrepreneurs.com/');
+        document.querySelector('.to-ezee').click();
+        // window.open('https://www.accompagnerlesentrepreneurs.com/');
         setTimeout(() => {
             sessionStorage.removeItem('exit', false);
             location.href = '/'; 
