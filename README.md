@@ -104,7 +104,7 @@ Discover my career path in a playful way thanks to an innovative CV site: a retr
 <!-- GETTING STARTED -->
 ## Getting Started
 
-PLease visit https://cv-adventure.nicolassaumont.com or click on [this link](https://cv-adventure.nicolassaumont.com). If you want to run the project locally, you can follow those steps :
+Please visit https://cv-adventure.nicolassaumont.com or click on [this link](https://cv-adventure.nicolassaumont.com). If you want to run the project locally, you can follow those steps :
 
 ### Installation
 
