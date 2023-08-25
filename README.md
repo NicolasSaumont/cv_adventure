@@ -104,7 +104,7 @@ Discover my career path in a playful way thanks to an innovative CV site: a retr
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This website is still in production, so it is not available online for now. To access it, you can follow those steps :
+PLease visit https://cv-adventure.nicolassaumont.com or click on [this link](https://cv-adventure.nicolassaumont.com). If you want to run the project locally, you can follow those steps :
 
 ### Installation
 
