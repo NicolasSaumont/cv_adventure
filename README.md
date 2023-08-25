@@ -36,7 +36,7 @@
 <h3 align="center">Nicolas Saumont's CV Adventure</h3>
 
   <p align="center">
-    project_description
+    A unique way to explore my carrer path !
     <br />
     <a href="https://github.com/NicolasSaumont/cv_adventure"><strong>Explore the docs »</strong></a>
     <br />

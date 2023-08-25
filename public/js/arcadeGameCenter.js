@@ -194,8 +194,8 @@ addEventListener('keydown', ({ code }) => {
         document.querySelector('.blackbox').style.opacity="1";
         sessionStorage.removeItem('comeFrom');
         sessionStorage.setItem('comeFrom', 'portfolio');
-        document.querySelector('.to-top-5-video-games').click();
-        // window.open('https://www.games.nicolassaumont.com/');
+        // document.querySelector('.to-top-5-video-games').click();
+        window.open('https://www.games.nicolassaumont.com/');
         setTimeout(() => {
             sessionStorage.removeItem('exit', false);
             location.href = '/'; 

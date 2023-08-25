@@ -227,8 +227,8 @@ addEventListener('keydown', ({ code }) => {
         document.querySelector('.blackbox').style.opacity="1";
         sessionStorage.removeItem('comeFrom');
         sessionStorage.setItem('comeFrom', 'portfolio');
-        document.querySelector('.to-fran').click();
-        // window.open('https://www.travel.nicolassaumont.com/');
+        // document.querySelector('.to-fran').click();
+        window.open('https://www.travel.nicolassaumont.com/');
         setTimeout(() => {
             sessionStorage.removeItem('exit', false);
             location.href = '/'; 
